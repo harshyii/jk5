@@ -1,0 +1,54 @@
+# ==========================================================
+# JK Enterprises
+# robots.txt
+# ==========================================================
+
+User-agent: *
+Allow: /
+
+# ==========================================================
+# Block Internal/System Files
+# ==========================================================
+
+Disallow: /assets/js/
+Disallow: /content/
+Disallow: /.vscode/
+
+# ==========================================================
+# Allow Assets Required for Rendering
+# ==========================================================
+
+Allow: /assets/css/
+Allow: /assets/images/
+
+# ==========================================================
+# Important Public Pages
+# ==========================================================
+
+Allow: /products.html
+Allow: /product.html
+Allow: /blogs.html
+Allow: /blog.html
+Allow: /brands.html
+Allow: /brand.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /faq.html
+Allow: /shipping.html
+Allow: /returns.html
+Allow: /privacy.html
+Allow: /terms.html
+
+# ==========================================================
+# Sitemaps
+# Replace with your final domain
+# ==========================================================
+
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# ==========================================================
+# Crawl Delay
+# (Ignored by Google, used by some crawlers)
+# ==========================================================
+
+Crawl-delay: 2

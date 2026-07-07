@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1">
+
+<title>Shopping Cart | JK Enterprises</title>
+
+<meta
+name="description"
+content="Review your shopping cart before checkout at JK Enterprises.">
+
+<meta
+name="robots"
+content="noindex,follow">
+
+<link
+rel="canonical"
+href="https://yourdomain.com/cart.html">
+
+<link
+rel="stylesheet"
+href="assets/css/bootstrap.min.css">
+
+<link
+rel="stylesheet"
+href="assets/css/app.css">
+
+</head>
+
+<body>
+
+<!-- ==========================================================
+HEADER
+Already Created
+========================================================== -->
+
+
+
+<!-- ==========================================================
+BREADCRUMB
+========================================================== -->
+
+<section class="bg-light border-bottom py-3">
+
+<div class="container">
+
+<nav aria-label="breadcrumb">
+
+<ol class="breadcrumb mb-0">
+
+<li class="breadcrumb-item">
+
+<a href="index.html">
+
+Home
+
+</a>
+
+</li>
+
+<li class="breadcrumb-item active">
+
+Shopping Cart
+
+</li>
+
+</ol>
+
+</nav>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+PAGE TITLE
+========================================================== -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="d-flex justify-content-between align-items-center flex-wrap">
+
+<div>
+
+<h1 class="fw-bold">
+
+Shopping Cart
+
+</h1>
+
+<p class="text-muted mb-0">
+
+Review your selected products before checkout.
+
+</p>
+
+</div>
+
+<div>
+
+<span class="badge bg-primary fs-6">
+
+Items
+
+<span id="cartItemCount">
+
+0
+
+</span>
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+EMPTY CART
+========================================================== -->
+
+<section
+id="emptyCart"
+class="py-5 d-none">
+
+<div class="container text-center">
+
+<h2>
+
+Your Cart is Empty
+
+</h2>
+
+<p class="text-muted">
+
+Looks like you haven't added any products yet.
+
+</p>
+
+<a
+href="products.html"
+class="btn btn-primary">
+
+Browse Products
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+CART
+========================================================== -->
+
+<section
+id="cartSection"
+class="pb-5">
+
+<div class="container">
+
+<div class="row g-4">
+
+<!-- ======================================================
+PRODUCTS
+====================================================== -->
+
+<div class="col-lg-8">
+
+<div
+id="cartItems">
+
+<!--
+
+Dynamic Cart Items
+
+-->
+
+</div>
+
+</div>
+
+
+
+<!-- ======================================================
+ORDER SUMMARY
+====================================================== -->
+
+<div class="col-lg-4">
+
+<div class="card shadow-sm sticky-top">
+
+<div class="card-body">
+
+<h4>
+
+Order Summary
+
+</h4>
+
+<hr>
+
+<div
+class="d-flex justify-content-between">
+
+<span>
+
+Subtotal
+
+</span>
+
+<strong
+id="subtotal">
+
+₹0
+
+</strong>
+
+</div>
+
+<div
+class="d-flex justify-content-between mt-2">
+
+<span>
+
+Discount
+
+</span>
+
+<strong
+id="discount">
+
+₹0
+
+</strong>
+
+</div>
+
+<div
+class="d-flex justify-content-between mt-2">
+
+<span>
+
+Shipping
+
+</span>
+
+<strong
+id="shipping">
+
+Calculated at Checkout
+
+</strong>
+
+</div>
+
+<div
+class="d-flex justify-content-between mt-2">
+
+<span>
+
+GST
+
+</span>
+
+<strong
+id="gst">
+
+Included
+
+</strong>
+
+</div>
+
+<hr>
+
+<div
+class="d-flex justify-content-between">
+
+<h4>
+
+Total
+
+</h4>
+
+<h4
+id="grandTotal">
+
+₹0
+
+</h4>
+
+</div>
+
+<button
+
+id="checkoutButton"
+
+class="btn btn-success w-100 mt-4">
+
+Proceed to Checkout
+
+</button>
+
+<a
+href="products.html"
+class="btn btn-outline-primary w-100 mt-2">
+
+Continue Shopping
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+COUPON
+Future
+========================================================== -->
+
+<section class="pb-5">
+
+<div class="container">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>
+
+Coupon Code
+
+</h5>
+
+<div class="input-group">
+
+<input
+
+type="text"
+
+id="couponCode"
+
+class="form-control"
+
+placeholder="Enter Coupon Code">
+
+<button
+
+class="btn btn-outline-primary">
+
+Apply
+
+</button>
+
+</div>
+
+<!--
+
+Future Coupon System
+
+-->
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+SHIPPING ESTIMATOR
+Future
+========================================================== -->
+
+<section class="pb-5">
+
+<div class="container">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>
+
+Estimate Shipping
+
+</h5>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<input
+
+type="text"
+
+class="form-control"
+
+placeholder="PIN Code">
+
+</div>
+
+<div class="col-md-3">
+
+<button
+
+class="btn btn-primary">
+
+Check
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+PAYMENT METHODS
+========================================================== -->
+
+<section class="pb-5">
+
+<div class="container">
+
+<h3>
+
+Accepted Payment Methods
+
+</h3>
+
+<div class="row g-3 mt-3">
+
+<div class="col-md-3">
+
+<div class="card text-center p-3">
+
+UPI
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-3">
+
+Cash on Delivery
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-3">
+
+Bank Transfer
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-3">
+
+Credit / Debit Card
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+RELATED PRODUCTS
+Future Dynamic
+========================================================== -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<h2>
+
+You May Also Like
+
+</h2>
+
+<a
+href="products.html">
+
+View All
+
+</a>
+
+</div>
+
+<div
+id="recommendedProducts"
+class="row g-4 mt-2">
+
+<!-- Dynamic -->
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+CUSTOMER SUPPORT
+========================================================== -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="card border-0 bg-primary text-white">
+
+<div class="card-body text-center">
+
+<h2>
+
+Need Assistance?
+
+</h2>
+
+<p>
+
+Our team is ready to help you choose the right products.
+
+</p>
+
+<a
+href="contact.html"
+class="btn btn-light">
+
+Contact Support
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================================
+FOOTER
+Already Created
+========================================================== -->
+
+
+
+<script
+src="assets/js/bootstrap.bundle.min.js">
+
+</script>
+
+<script
+type="module"
+src="assets/js/cart.js">
+
+</script>
+
+<script
+type="module"
+src="assets/js/app.js">
+
+</script>
+
+</body>
+
+</html>

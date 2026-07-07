@@ -1,0 +1,33 @@
+# JK Enterprises
+
+Website:
+https://yourdomain.com
+
+Purpose:
+Wholesale and retail supplier of industrial products.
+
+Products:
+Power Tools
+Hand Tools
+Solar Products
+Industrial Equipment
+Automotive Care Products
+
+Content:
+Product Catalog
+Buying Guides
+Brand Information
+FAQs
+Policies
+
+Preferred Canonical:
+https://yourdomain.com/
+
+Primary Sitemap:
+https://yourdomain.com/sitemap.xml
+
+Robots:
+https://yourdomain.com/robots.txt
+
+License:
+All content © JK Enterprises unless otherwise stated.

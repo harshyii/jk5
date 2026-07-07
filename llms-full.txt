@@ -1,0 +1,103 @@
+# JK Enterprises Knowledge Index
+
+Organization:
+JK Enterprises
+
+Industry:
+Industrial Equipment
+Power Tools
+Hand Tools
+Solar Products
+Automotive Products
+
+Website:
+https://yourdomain.com
+
+Pages
+
+/
+index.html
+
+/products.html
+
+/product.html?id=PRODUCT_ID
+
+/brands.html
+
+/brand.html?id=BRAND
+
+/blogs.html
+
+/blog.html?id=BLOG
+
+/search.html
+
+/about.html
+
+/contact.html
+
+/faqs.html
+
+/shipping.html
+
+/returns.html
+
+/privacy.html
+
+/terms.html
+
+Product Data
+
+Google Sheets
+
+Dynamic Product Pages
+
+Dynamic Brand Pages
+
+Dynamic Blog Pages
+
+Markdown Articles
+
+Search
+
+Products
+
+Brands
+
+Blogs
+
+SEO
+
+JSON-LD
+
+Open Graph
+
+Twitter Cards
+
+Canonical URLs
+
+XML Sitemap
+
+Robots
+
+LLMs
+
+Technology
+
+HTML5
+
+Bootstrap 5
+
+Vanilla JavaScript
+
+Google Apps Script
+
+Google Sheets
+
+GitHub Pages
+
+License
+
+© JK Enterprises
+
+All Rights Reserved.

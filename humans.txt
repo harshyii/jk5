@@ -1,0 +1,43 @@
+/* TEAM */
+
+Company:
+JK Enterprises
+
+Website:
+https://yourdomain.com
+
+Location:
+Kurukshetra, Haryana, India
+
+Owner:
+JK Enterprises
+
+Development:
+In-house
+
+Technology:
+HTML5
+Bootstrap 5
+Vanilla JavaScript
+Google Apps Script
+Google Sheets
+
+/* SITE */
+
+Language:
+English
+
+Framework:
+Bootstrap 5
+
+Backend:
+Google Apps Script REST API
+
+Database:
+Google Sheets
+
+Hosting:
+GitHub Pages
+
+Updated:
+2026
