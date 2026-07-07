@@ -4,85 +4,85 @@
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://yourdomain.com/</loc>
+<loc>https://harshyii.github.io/jk-enterprises/</loc>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/products.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/products.html</loc>
 <changefreq>daily</changefreq>
 <priority>0.95</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/blogs.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/blogs.html</loc>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/brands.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/brands.html</loc>
 <changefreq>weekly</changefreq>
 <priority>0.85</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/search.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/search.html</loc>
 <changefreq>weekly</changefreq>
 <priority>0.70</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/about.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/about.html</loc>
 <changefreq>monthly</changefreq>
 <priority>0.60</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/contact.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/contact.html</loc>
 <changefreq>monthly</changefreq>
 <priority>0.60</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/faq.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/faq.html</loc>
 <changefreq>monthly</changefreq>
 <priority>0.55</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/shipping.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/shipping.html</loc>
 <changefreq>yearly</changefreq>
 <priority>0.45</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/returns.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/returns.html</loc>
 <changefreq>yearly</changefreq>
 <priority>0.45</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/privacy.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/privacy.html</loc>
 <changefreq>yearly</changefreq>
 <priority>0.30</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/terms.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/terms.html</loc>
 <changefreq>yearly</changefreq>
 <priority>0.30</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/cart.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/cart.html</loc>
 <changefreq>weekly</changefreq>
 <priority>0.40</priority>
 </url>
 
 <url>
-<loc>https://yourdomain.com/checkout.html</loc>
+<loc>https://harshyii.github.io/jk-enterprises/checkout.html</loc>
 <changefreq>weekly</changefreq>
 <priority>0.40</priority>
 </url>

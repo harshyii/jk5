@@ -4,7 +4,7 @@ Company:
 JK Enterprises
 
 Website:
-https://yourdomain.com
+https://harshyii.github.io/jk-enterprises
 
 Location:
 Kurukshetra, Haryana, India

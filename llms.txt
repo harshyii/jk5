@@ -1,7 +1,7 @@
 # JK Enterprises
 
 Website:
-https://yourdomain.com
+https://harshyii.github.io/jk-enterprises
 
 Purpose:
 Wholesale and retail supplier of industrial products.
@@ -21,13 +21,13 @@ FAQs
 Policies
 
 Preferred Canonical:
-https://yourdomain.com/
+https://harshyii.github.io/jk-enterprises/
 
 Primary Sitemap:
-https://yourdomain.com/sitemap.xml
+https://harshyii.github.io/jk-enterprises/sitemap.xml
 
 Robots:
-https://yourdomain.com/robots.txt
+https://harshyii.github.io/jk-enterprises/robots.txt
 
 License:
 All content © JK Enterprises unless otherwise stated.

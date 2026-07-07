@@ -1,12 +1,12 @@
-Contact: mailto:support@yourdomain.com
-Contact: https://yourdomain.com/contact.html
+Contact: mailto:jkpehowa24@gmail.com
+Contact: https://harshyii.github.io/jk-enterprises/contact.html
 
 Expires: 2027-12-31T23:59:59Z
 
 Preferred-Languages: en
 
-Canonical: https://yourdomain.com/.well-known/security.txt
+Canonical: https://harshyii.github.io/jk-enterprises/.well-known/security.txt
 
-Policy: https://yourdomain.com/privacy.html
+Policy: https://harshyii.github.io/jk-enterprises/privacy.html
 
-Acknowledgments: https://yourdomain.com/about.html
+Acknowledgments: https://harshyii.github.io/jk-enterprises/about.html

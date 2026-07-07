@@ -19,7 +19,7 @@ const CONFIG = Object.freeze({
 
     SITE_NAME: "JK Enterprises",
 
-    SITE_URL: "https://yourdomain.com",
+    SITE_URL: "https://harshyii.github.io/jk-enterprises",
 
     SITE_DESCRIPTION:
         "Power Tools, Hand Tools, Solar Products, Industrial Equipment and Automotive Care Products.",
@@ -40,7 +40,7 @@ const CONFIG = Object.freeze({
 
     API: {
 
-        BASE_URL: "YOUR_GOOGLE_APPS_SCRIPT_URL",
+        BASE_URL: "https://script.google.com/macros/s/AKfycbzERrP3-02Gl901CcpdTo5I1zdmLos2LL-mBzFkYP8t3qsswRdEVNs2ZbAJNefAM3lB/exec",
 
         TIMEOUT: 15000
 
@@ -148,9 +148,9 @@ const CONFIG = Object.freeze({
 
         NAME: "JK Enterprises",
 
-        EMAIL: "support@yourdomain.com",
+        EMAIL: "jkpehowa24@gmail.com",
 
-        PHONE: "+91XXXXXXXXXX",
+        PHONE: "+919050623210",
 
         ADDRESS: "Kurukshetra, Haryana, India"
 
