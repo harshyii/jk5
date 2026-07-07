@@ -417,7 +417,7 @@ product(product){
 
             "@type":"Brand",
 
-            name:product.brand
+            name:item.brand
 
         },
 

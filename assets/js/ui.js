@@ -645,7 +645,7 @@ productPrice(product){
 
 const mrp=Number(product.mrp||0);
 
-const sale=Number(product.price||product.salePrice||0);
+const sale=Number(product.price||product.price||0);
 
 const discount=Number(product.discount||0);
 
@@ -749,9 +749,9 @@ ${this.productBadge(product)}
 
 </div>
 
-<div class="product-brand">
+<div class="product-Brand">
 
-${product.brand||""}
+${item.brand||""}
 
 </div>
 
@@ -1017,7 +1017,7 @@ Brand:
 
 </strong>
 
-${product.brand||"-"}
+${item.brand||"-"}
 
 </div>
 
@@ -1052,7 +1052,7 @@ const specs=[
 
 ["SKU",product.sku],
 
-["Brand",product.brand],
+["Brand",item.brand],
 
 ["Category",product.category],
 
@@ -1346,9 +1346,9 @@ ${this.productGallery(images)}
 
 <div class="product-info">
 
-<div class="product-brand">
+<div class="product-Brand">
 
-${product.brand||""}
+${item.brand||""}
 
 </div>
 
@@ -1796,21 +1796,21 @@ ${this.relatedBlogs()}
  Brand Logo
 ==========================================================*/
 
-brandLogo(brand){
+brandLogo(Brand){
 
 return`
 
-<div class="brand-logo">
+<div class="Brand-logo">
 
 <img
 
-src="${brand.logo||CONFIG.IMAGES.BRAND}"
+src="${Brand.logo||CONFIG.IMAGES.Brand}"
 
-alt="${Utils.escape(brand.name)}"
+alt="${Utils.escape(Brand.name)}"
 
 loading="lazy"
 
-onerror="this.src='${CONFIG.IMAGES.BRAND}'">
+onerror="this.src='${CONFIG.IMAGES.Brand}'">
 
 </div>
 
@@ -1824,37 +1824,37 @@ onerror="this.src='${CONFIG.IMAGES.BRAND}'">
  Brand Card
 ==========================================================*/
 
-brandCard(brand){
+brandCard(Brand){
 
 return`
 
 <article
 
-class="card brand-card"
+class="card Brand-card"
 
-data-brand="${brand.id}"
+data-Brand="${Brand.id}"
 
-data-name="${brand.name||""}">
+data-name="${Brand.name||""}">
 
 <a
 
-href="brand.html?id=${brand.id}"
+href="Brand.html?id=${Brand.id}"
 
 class="text-decoration-none text-dark">
 
-${this.brandLogo(brand)}
+${this.brandLogo(Brand)}
 
 <div class="card-body">
 
-<h3 class="brand-title">
+<h3 class="Brand-title">
 
-${Utils.escape(brand.name)}
+${Utils.escape(Brand.name)}
 
 </h3>
 
-<p class="brand-description">
+<p class="Brand-description">
 
-${brand.description||""}
+${Brand.description||""}
 
 </p>
 
@@ -1884,11 +1884,11 @@ return`
 
 <div class="row g-4">
 
-${brands.map(brand=>`
+${brands.map(Brand=>`
 
 <div class="col-lg-3 col-md-4 col-sm-6">
 
-${this.brandCard(brand)}
+${this.brandCard(Brand)}
 
 </div>
 
@@ -1906,23 +1906,23 @@ ${this.brandCard(brand)}
  Brand Hero
 ==========================================================*/
 
-brandHero(brand){
+brandHero(Brand){
 
 return`
 
-<section class="brand-hero">
+<section class="Brand-hero">
 
-${this.brandLogo(brand)}
+${this.brandLogo(Brand)}
 
-<h1 class="brand-title">
+<h1 class="Brand-title">
 
-${Utils.escape(brand.name)}
+${Utils.escape(Brand.name)}
 
 </h1>
 
-<p class="brand-description">
+<p class="Brand-description">
 
-${brand.description||""}
+${Brand.description||""}
 
 </p>
 
@@ -1938,17 +1938,17 @@ ${brand.description||""}
  Brand Statistics
 ==========================================================*/
 
-brandStats(brand){
+brandStats(Brand){
 
 return`
 
-<section class="brand-stats">
+<section class="Brand-stats">
 
-<div class="brand-stat">
+<div class="Brand-stat">
 
 <h3>
 
-${brand.products||0}
+${Brand.products||0}
 
 </h3>
 
@@ -1960,11 +1960,11 @@ Products
 
 </div>
 
-<div class="brand-stat">
+<div class="Brand-stat">
 
 <h3>
 
-${brand.years||"-"}
+${Brand.years||"-"}
 
 </h3>
 
@@ -1976,11 +1976,11 @@ Years
 
 </div>
 
-<div class="brand-stat">
+<div class="Brand-stat">
 
 <h3>
 
-${brand.country||"-"}
+${Brand.country||"-"}
 
 </h3>
 
@@ -1992,11 +1992,11 @@ Country
 
 </div>
 
-<div class="brand-stat">
+<div class="Brand-stat">
 
 <h3>
 
-${brand.warranty||"-"}
+${Brand.warranty||"-"}
 
 </h3>
 
@@ -2020,27 +2020,27 @@ Warranty
  Brand Categories
 ==========================================================*/
 
-brandCategories(brand){
+brandCategories(Brand){
 
-if(!brand.categories)
+if(!Brand.categories)
 
 return"";
 
 const categories=
 
-Array.isArray(brand.categories)
+Array.isArray(Brand.categories)
 
-?brand.categories
+?Brand.categories
 
-:String(brand.categories).split(",");
+:String(Brand.categories).split(",");
 
 return`
 
-<section class="brand-categories">
+<section class="Brand-categories">
 
 ${categories.map(category=>`
 
-<span class="brand-category">
+<span class="Brand-category">
 
 ${category.trim()}
 
@@ -2060,21 +2060,21 @@ ${category.trim()}
  Brand Banner
 ==========================================================*/
 
-brandBanner(brand){
+brandBanner(Brand){
 
-if(!brand.banner)
+if(!Brand.banner)
 
 return"";
 
 return`
 
-<section class="brand-banner">
+<section class="Brand-banner">
 
 <img
 
-src="${brand.banner}"
+src="${Brand.banner}"
 
-alt="${Utils.escape(brand.name)}"
+alt="${Utils.escape(Brand.name)}"
 
 loading="lazy">
 
@@ -2094,7 +2094,7 @@ brandProducts(){
 
 return`
 
-<section class="brand-products">
+<section class="Brand-products">
 
 <h2>
 
@@ -2158,7 +2158,7 @@ brandContact(){
 
 return`
 
-<section class="brand-contact">
+<section class="Brand-contact">
 
 <h2>
 
@@ -2196,21 +2196,21 @@ Contact Us
  Complete Brand Page
 ==========================================================*/
 
-brand(brand){
+Brand(Brand){
 
 return`
 
-<section class="brand-page">
+<section class="Brand-page">
 
 <div class="container">
 
-${this.brandHero(brand)}
+${this.brandHero(Brand)}
 
-${this.brandStats(brand)}
+${this.brandStats(Brand)}
 
-${this.brandCategories(brand)}
+${this.brandCategories(Brand)}
 
-${this.brandBanner(brand)}
+${this.brandBanner(Brand)}
 
 ${this.brandProducts()}
 

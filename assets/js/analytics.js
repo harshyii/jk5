@@ -133,7 +133,7 @@ viewProduct(product){
 
                 item_name:product.name,
 
-                item_brand:product.brand,
+                item_brand:item.brand,
 
                 item_category:product.category,
 
