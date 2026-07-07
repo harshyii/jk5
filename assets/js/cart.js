@@ -535,28 +535,45 @@ bind(){
 
 events(){
 
-    document.addEventListener(
+    // Existing custom event
+    document.addEventListener("cart:add", e=>{
 
-        "cart:add",
+        this.add(
+            e.detail.product,
+            e.detail.quantity
+        );
 
-        e=>{
+    });
 
-            this.add(
+    // Handle all Add to Cart buttons
+    document.addEventListener("click", async e=>{
 
-                e.detail.product,
+        const button = e.target.closest("[data-cart-add]");
 
-                e.detail.quantity
+        if(!button) return;
 
-            );
+        e.preventDefault();
+
+        const id = button.dataset.cartAdd;
+
+        const {default:API} = await import("./api.js");
+
+        const response = await API.product(id);
+
+        if(!response.success || !response.data){
+
+            console.error("Unable to load product.");
+
+            return;
 
         }
 
-    );
+        this.add(response.data,1);
+
+    });
 
 }
 
 };
-
-
 
 export default Cart;

@@ -40,8 +40,13 @@ const App = {
 
             this.events();
 
+            // Initialize cart globally
+            Cart.init();
+
+            // Load current page
             await this.page();
 
+            // Initialize SEO
             SEO.init();
 
             console.log("JK Enterprises Loaded");
