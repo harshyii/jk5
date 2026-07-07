@@ -179,5 +179,20 @@ document.addEventListener(
 export default App;
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/assets/js/sw.js");
+  if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        const base = window.location.pathname.startsWith("/jk-enterprises/")
+            ? "/jk-enterprises/"
+            : "/";
+
+        navigator.serviceWorker
+            .register(base + "assets/js/sw.js")
+            .then(reg => console.log("Service Worker registered", reg))
+            .catch(err => console.error("Service Worker failed", err));
+
+    });
+
+}
 }
