@@ -1,16 +1,32 @@
 /*==========================================================
  JK Enterprises
  app.js
- Version : 1.0
+ Version : 2.0
  Application Bootstrap
 ==========================================================*/
 
 "use strict";
 
+/*==========================================================
+ IMPORTS
+==========================================================*/
+
 import Router from "./router.js";
 import SEO from "./seo.js";
 
-const App={
+import Product from "./product.js";
+import Blog from "./blog.js";
+import Brand from "./brand.js";
+import Cart from "./cart.js";
+import Checkout from "./checkout.js";
+import Search from "./search.js";
+
+
+/*==========================================================
+ APPLICATION
+==========================================================*/
+
+const App = {
 
     /*======================================================
      Initialize
@@ -28,11 +44,7 @@ const App={
 
             SEO.init();
 
-            console.log(
-
-                "JK Enterprises Loaded"
-
-            );
+            console.log("JK Enterprises Loaded");
 
         }
 
@@ -47,56 +59,94 @@ const App={
 
 
     /*======================================================
-     Page Loader
+     Current Page
     ======================================================*/
 
     async page(){
 
-        switch(true){
+        if(Router.isProducts()){
 
-            case Router.isHome():
+            await Product.catalog();
 
-                break;
+            return;
 
-            case Router.isProducts():
+        }
 
-                break;
+        if(Router.isProduct()){
 
-            case Router.isProduct():
+            await Product.details();
 
-                break;
+            return;
 
-            case Router.isBrands():
+        }
 
-                break;
+        if(Router.isBlogs()){
 
-            case Router.isBrand():
+            if(typeof Blog.catalog==="function")
 
-                break;
+                await Blog.catalog();
 
-            case Router.isBlogs():
+            return;
 
-                break;
+        }
 
-            case Router.isBlog():
+        if(Router.isBlog()){
 
-                break;
+            if(typeof Blog.details==="function")
 
-            case Router.isSearch():
+                await Blog.details();
 
-                break;
+            return;
 
-            case Router.isCart():
+        }
 
-                break;
+        if(Router.isBrands()){
 
-            case Router.isCheckout():
+            if(typeof Brand.catalog==="function")
 
-                break;
+                await Brand.catalog();
 
-            default:
+            return;
 
-                break;
+        }
+
+        if(Router.isBrand()){
+
+            if(typeof Brand.details==="function")
+
+                await Brand.details();
+
+            return;
+
+        }
+
+        if(Router.isSearch()){
+
+            if(typeof Search.init==="function")
+
+                await Search.init();
+
+            return;
+
+        }
+
+        if(Router.isCart()){
+
+            if(typeof Cart.init==="function")
+
+                await Cart.init();
+
+            return;
+
+        }
+
+        if(Router.isCheckout()){
+
+            if(typeof Checkout.init==="function")
+
+                await Checkout.init();
+
+            return;
 
         }
 
@@ -110,63 +160,37 @@ const App={
 
     events(){
 
-        window.addEventListener(
+        window.addEventListener("online",()=>{
 
-            "online",
+            console.log("Online");
 
-            ()=>console.log("Online")
+        });
 
-        );
+        window.addEventListener("offline",()=>{
 
+            console.log("Offline");
 
+        });
 
-        window.addEventListener(
+        document.addEventListener("visibilitychange",()=>{
 
-            "offline",
+            if(document.hidden) return;
 
-            ()=>console.log("Offline")
+        });
 
-        );
+        window.addEventListener("resize",()=>{});
 
-
-
-        document.addEventListener(
-
-            "visibilitychange",
-
-            ()=>{
-
-                if(document.hidden)return;
-
-            }
-
-        );
-
-
-
-        window.addEventListener(
-
-            "scroll",
-
-            ()=>{}
-
-        );
-
-
-
-        window.addEventListener(
-
-            "resize",
-
-            ()=>{}
-
-        );
+        window.addEventListener("scroll",()=>{});
 
     }
 
 };
 
 
+
+/*==========================================================
+ DOM READY
+==========================================================*/
 
 document.addEventListener(
 
@@ -176,23 +200,40 @@ document.addEventListener(
 
 );
 
-export default App;
 
-if ("serviceWorker" in navigator) {
-  if ("serviceWorker" in navigator) {
 
-    window.addEventListener("load", () => {
+/*==========================================================
+ SERVICE WORKER
+==========================================================*/
 
-        const base = window.location.pathname.startsWith("/jk-enterprises/")
+if("serviceWorker" in navigator){
+
+    window.addEventListener("load",()=>{
+
+        const base = location.pathname.startsWith("/jk-enterprises/")
             ? "/jk-enterprises/"
             : "/";
 
         navigator.serviceWorker
+
             .register(base + "assets/js/sw.js")
-            .then(reg => console.log("Service Worker registered", reg))
-            .catch(err => console.error("Service Worker failed", err));
+
+            .then(reg=>{
+
+                console.log("Service Worker registered",reg);
+
+            })
+
+            .catch(err=>{
+
+                console.error(err);
+
+            });
 
     });
 
 }
-}
+
+
+
+export default App;
