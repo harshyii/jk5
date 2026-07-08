@@ -1492,47 +1492,61 @@ onerror="this.src='${CONFIG.IMAGES.BLOG}'">
 
 blogCard(blog){
 
-return`
+return `
 
-<div class="col-md-4">
+<div class="col-md-6 col-lg-4">
 
-<div class="card h-100">
-
-<img
-
-src="${blog.image||'assets/images/blog.webp'}"
-
-class="card-img-top"
-
-loading="lazy"
-
-alt="${blog.title}">
-
-<div class="card-body">
-
-<h5>
-
-${blog.title}
-
-</h5>
-
-<p>
-
-${blog.excerpt||""}
-
-</p>
+<div class="card h-100 shadow-sm border-0">
 
 <a
 
-href="blog.html?id=${blog.slug}"
+href="blog.html?id=${blog.Slug}"
 
-class="btn btn-outline-primary">
+class="text-decoration-none text-dark">
 
-Read More
+<img
 
-</a>
+src="assets/images/blogs/${blog.FeaturedImage}"
+
+class="card-img-top"
+
+alt="${blog.ImageAlt}"
+
+loading="lazy">
+
+<div class="card-body">
+
+<span class="badge bg-primary mb-2">
+
+${blog.Category}
+
+</span>
+
+<h5>
+
+${blog.Title}
+
+</h5>
+
+<p class="text-muted">
+
+${blog.Excerpt}
+
+</p>
 
 </div>
+
+<div class="card-footer bg-white border-0">
+
+<span class="fw-bold">
+
+Read More →
+
+</span>
+
+</div>
+
+</a>
 
 </div>
 
@@ -1541,7 +1555,6 @@ Read More
 `;
 
 },
-
 
 /*==========================================================
  Blog Grid

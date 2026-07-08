@@ -48,6 +48,7 @@ const App = {
 
             // Load current page
             await this.page();
+            await Home.init();
 
             // Initialize SEO
             SEO.init();

@@ -390,14 +390,16 @@ Share
 <div class="d-grid gap-2">
 
 <button
-class="btn btn-outline-primary">
+class="btn btn-outline-success"
+data-share="whatsapp">
 
 WhatsApp
 
 </button>
 
 <button
-class="btn btn-outline-secondary">
+class="btn btn-outline-secondary"
+onclick="Blog.copyLink()">
 
 Copy Link
 
@@ -913,7 +915,7 @@ Footer end
 src="assets/vendor/bootstrap/bootstrap.bundle.min.js">
 
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script
 type="module"
 src="assets/js/blog.js">

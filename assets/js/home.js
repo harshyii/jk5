@@ -17,13 +17,9 @@ const Home = {
 
 async init(){
 
-    if(!document.getElementById("featuredProducts"))
-        return;
-
     await this.load();
 
 },
-
 
 /*==========================================================
  Load Homepage
@@ -38,30 +34,78 @@ async load(){
         const response = await API.homepage();
 
         if(!response.success){
+
             throw new Error(
-                response.message || "Unable to load homepage."
+
+                response.message ||
+
+                "Unable to load homepage."
+
             );
+
         }
 
-        const data = response.data;
+        const data = response.data || {};
 
-        await this.products(data.products || []);
+        if(document.getElementById("featuredProducts")){
 
-        await this.brands(data.brands || []);
+            await this.products(
 
-        await this.blogs(data.blogs || []);
+                data.products || []
+
+            );
+
+        }
+
+        if(document.getElementById("featuredBrands")){
+
+            await this.brands(
+
+                data.brands || []
+
+            );
+
+        }
+
+        if(document.getElementById("latestBlogs")){
+
+            await this.blogs(
+
+                data.blogs || []
+
+            );
+
+        }
 
     }
 
     catch(error){
 
-        console.error("Homepage Error:", error);
+        console.error(
 
-        await this.products([]);
+            "Homepage Error:",
 
-        await this.brands([]);
+            error
 
-        await this.blogs([]);
+        );
+
+        if(document.getElementById("featuredProducts")){
+
+            await this.products([]);
+
+        }
+
+        if(document.getElementById("featuredBrands")){
+
+            await this.brands([]);
+
+        }
+
+        if(document.getElementById("latestBlogs")){
+
+            await this.blogs([]);
+
+        }
 
     }
 
