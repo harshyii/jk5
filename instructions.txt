@@ -270,7 +270,7 @@ Add Social Media Links Here
 
 <!-- EDIT LINKS -->
 
-<a href="#" aria-label="Facebook">Facebook</a>
+<a href="facebook.com" aria-label="Facebook">Facebook</a>
 
 <a href="https://www.instagram.com/haryana.tools/" aria-label="Instagram">Instagram</a>
 
