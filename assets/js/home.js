@@ -24,6 +24,7 @@ async init(){
 
 },
 
+
 /*==========================================================
  Load Homepage
 ==========================================================*/
@@ -37,68 +38,24 @@ async load(){
         const response = await API.homepage();
 
         if(!response.success){
-
             throw new Error(
-
-                response.message ||
-
-                "Unable to load homepage."
-
+                response.message || "Unable to load homepage."
             );
-
         }
 
-       const response = await API.homepage();
+        const data = response.data;
 
-        if(!response.success){
+        await this.products(data.products || []);
 
-            throw new Error(response.message);
+        await this.brands(data.brands || []);
 
-        }
-
-const data = response.data;
-
-await this.products(
-
-    data.products || []
-
-);
-
-await this.brands(
-
-    data.brands || []
-
-);
-
-await this.blogs(
-
-    data.blogs || []
-
-);
-
-        await this.brands(
-
-            data.brands || []
-
-        );
-
-        await this.blogs(
-
-            data.blogs || []
-
-        );
+        await this.blogs(data.blogs || []);
 
     }
 
     catch(error){
 
-        console.error(
-
-            "Homepage Error:",
-
-            error
-
-        );
+        console.error("Homepage Error:", error);
 
         await this.products([]);
 
@@ -235,7 +192,9 @@ async brands(list){
 
         try{
 
-            list=await API.brands();
+            const response = await API.brands();
+
+            list = response.data || [];
 
             list=list.slice(0,8);
 

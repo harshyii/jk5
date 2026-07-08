@@ -18,7 +18,7 @@ import Product from "./product.js";
 import Blog from "./blog.js";
 import Brand from "./brand.js";
 import Cart from "./cart.js";
-
+import Home from "./home.js";
 
 import Checkout from "./checkout.js";
 import Search from "./search.js";
