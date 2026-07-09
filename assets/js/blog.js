@@ -718,6 +718,34 @@ renderMeta(){
 
 },
 
+initFAQ(){
+
+    document.querySelectorAll(".faq-question").forEach(header=>{
+
+        header.addEventListener("click",()=>{
+
+            const icon = header.querySelector(".faq-icon");
+
+            setTimeout(()=>{
+
+                const target = document.querySelector(
+                    header.dataset.bsTarget
+                );
+
+                if(!target) return;
+
+                icon.textContent = target.classList.contains("show")
+                    ? "−"
+                    : "+";
+
+            },150);
+
+        });
+
+    });
+
+},
+
 /*==========================================================
  Markdown
 ==========================================================*/

@@ -278,7 +278,7 @@ async brands(list){
 
 async blogs(list){
 
-    const container=document.getElementById("latestBlogs");
+    const container = document.getElementById("latestBlogs");
 
     if(!container) return;
 
@@ -286,15 +286,24 @@ async blogs(list){
 
         try{
 
-            list=await API.blogs();
+            const response = await API.blogs();
 
-            list=list.slice(0,6);
+            if(
+                !response.success ||
+                !response.data?.length
+            ){
+                throw new Error("No blogs found");
+            }
+
+            list = response.data.slice(0,6);
 
         }
 
-        catch{
+        catch(error){
 
-            container.innerHTML=this.emptyCard(
+            console.error("Blogs Error:", error);
+
+            container.innerHTML = this.emptyCard(
 
                 "No Articles Available",
 
@@ -310,15 +319,16 @@ async blogs(list){
 
     }
 
-    container.innerHTML=
+    container.innerHTML =
 
-    list.map(blog=>
+        list.map(blog =>
 
-        UI.blogCard(blog)
+            UI.blogCard(blog)
 
-    ).join("");
+        ).join("");
 
 },
+
 
 /*==========================================================
  Empty Card

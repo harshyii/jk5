@@ -111,13 +111,13 @@ const App = {
 
         if(Router.isBrands()){
 
-            if(typeof Brand.catalog==="function")
+    if(typeof Brand.list==="function")
 
-                await Brand.catalog();
+        await Brand.list();
 
-            return;
+    return;
 
-        }
+}
 
         if(Router.isBrand()){
 

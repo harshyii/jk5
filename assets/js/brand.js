@@ -37,56 +37,50 @@ async init(){
 
 async list(){
 
-    const grid=document.getElementById(
+    const grid = document.getElementById("brandGrid");
 
-        "brandGrid"
-
-    );
-
-    if(!grid)return;
+    if(!grid) return;
 
     UI.loader(grid);
 
-    const response=
+    const response = await API.brands();
 
-    await API.brands();
+    console.log("Brands API Response:", response);
 
     if(
-
-        !response.success||
-
+        !response.success ||
         !response.data?.length
-
     ){
 
         UI.empty(
-
             grid,
-
             "No Brands",
-
             "Brands will appear here."
-
         );
+
+        const count = document.getElementById("brandCount");
+        if(count) count.textContent = 0;
 
         return;
 
     }
 
-    grid.innerHTML=
+    const brands = response.data;
 
-    response.data
+    console.table(brands);
+    console.log(brands[0]);
 
-    .map(
+    // Update brand count
+    const count = document.getElementById("brandCount");
+    if(count){
+        count.textContent = brands.length;
+    }
 
-        brand=>UI.brandCard(brand)
-
-    )
-
-    .join("");
+    grid.innerHTML = brands
+        .map(brand => UI.brandCard(brand))
+        .join("");
 
 },
-
 
 
 /*==========================================================

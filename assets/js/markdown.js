@@ -15,7 +15,76 @@ const Markdown={
 
 render(markdown=""){
 
-    let html=String(markdown);
+    let html = String(markdown);
+/*------------------------------------------------------
+  FAQ Blocks
+------------------------------------------------------*/
+
+let faqIndex = 0;
+
+html = html.replace(
+
+/:::faq\s+([\s\S]*?)\n([\s\S]*?):::/g,
+
+(_,question,answer)=>{
+
+faqIndex++;
+
+return `
+
+<div class="faq-card card mb-3">
+
+<div
+class="card-header faq-question"
+data-bs-toggle="collapse"
+data-bs-target="#faq${faqIndex}"
+style="cursor:pointer;">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<strong>
+
+${question.trim()}
+
+</strong>
+
+<span class="faq-icon">
+
++
+
+</span>
+
+</div>
+
+</div>
+
+<div
+id="faq${faqIndex}"
+class="collapse">
+
+<div class="card-body">
+
+${this.render(answer.trim())}
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+);
+/*------------------------------------------------------
+  Remove YAML Front Matter
+------------------------------------------------------*/
+
+html = html.replace(
+    /^---\s*\n[\s\S]*?\n---\s*\n?/,
+    ""
+);
 
 
 
