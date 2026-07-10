@@ -26,7 +26,19 @@ const r=await fetch(url,{cache:"force-cache"});
 
 if(!r.ok)throw Error(`HTTP ${r.status}`);
 
-return await r.json();
+const text=await r.text();
+
+console.log("SERVER RESPONSE:",text);
+
+try{
+return JSON.parse(text);
+}catch(e){
+return{
+success:false,
+message:text,
+data:null
+};
+}
 
 }catch(e){
 
@@ -88,19 +100,21 @@ async order(order={}){
 
 try{
 
-const fd=new FormData();
-
-fd.append("action",CONFIG.ACTIONS.ORDER);
-fd.append("order",JSON.stringify(order));
-
 const r=await fetch(CONFIG.API.BASE_URL,{
 method:"POST",
-body:fd
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+action:"order",
+order
+})
 });
 
-if(!r.ok)throw Error(`HTTP ${r.status}`);
+const text=await r.text();
+console.log("POST RESPONSE:",text);
 
-return await r.json();
+return JSON.parse(text);
 
 }catch(e){
 
@@ -114,9 +128,8 @@ data:null
 
 }
 
-
-
 }
+
 };
 
 export default API;
