@@ -116,7 +116,7 @@ list.innerHTML=this.items.map(item=>`
 <div class="cart-item">
 
 <div class="cart-item-image">
-<img src="${item.image}" alt="${item.name}" loading="lazy">
+<img src="${item.image}" alt="${item.name}" loading="lazy" style="width:200px;height:200px;object-fit:contain;">
 </div>
 
 <div>

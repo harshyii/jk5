@@ -139,7 +139,29 @@ ${Array.from({length:pages},(_,i)=>`
 </ul>
 </nav>`;
 
-}
+},
+
+toast(msg,type="success"){
+
+const c=document.getElementById("toastContainer")||(()=>{
+const e=document.createElement("div");
+e.id="toastContainer";
+e.className="toast-container position-fixed top-0 end-0 p-3";
+document.body.appendChild(e);
+return e;
+})();
+
+const t=document.createElement("div");
+
+t.className=`toast align-items-center text-bg-${type} border-0 show`;
+
+t.innerHTML=`<div class="d-flex"><div class="toast-body">${msg}</div><button class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>`;
+
+c.appendChild(t);
+
+setTimeout(()=>t.remove(),3000);
+
+},
 
 };
 
