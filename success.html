@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Order Successful | JK Enterprises</title>
+
+<meta name="description" content="Your order has been placed successfully.">
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+<header id="siteHeader"></header>
+
+<main class="container py-5">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-6">
+
+<div class="card shadow-sm border-0 text-center">
+
+<div class="card-body p-5">
+
+<div class="display-1 text-success mb-3">
+✓
+</div>
+
+<h1 class="h2 fw-bold mb-3">
+Order Placed Successfully
+</h1>
+
+<p class="text-secondary mb-4">
+Thank you for shopping with <strong>JK Enterprises</strong>.<br>
+Your order has been received successfully.
+</p>
+
+<div class="alert alert-light border">
+
+<div class="small text-secondary">
+Order Number
+</div>
+
+<div id="orderNumber" class="fs-4 fw-bold">
+--
+</div>
+
+</div>
+
+<div class="row g-2 mt-4">
+
+<div class="col-md-6">
+
+<a href="products.html" class="btn btn-primary w-100">
+Continue Shopping
+</a>
+
+</div>
+
+<div class="col-md-6">
+
+<a href="contact.html" class="btn btn-outline-primary w-100">
+Contact Support
+</a>
+
+</div>
+
+</div>
+
+<hr class="my-4">
+
+<p class="small text-secondary mb-2">
+A confirmation will be shared using the contact details provided during checkout.
+</p>
+
+<a href="index.html" class="text-decoration-none">
+← Back to Home
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<footer id="siteFooter"></footer>
+
+<script type="module">
+
+import Layout from "./assets/js/layout.js";
+
+Layout.init();
+
+const id=new URLSearchParams(location.search).get("order");
+
+if(id)
+document.getElementById("orderNumber").textContent=id;
+
+</script>
+
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

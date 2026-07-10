@@ -89,7 +89,6 @@ return true;
 /*==========================================================
  Form Data
 ==========================================================*/
-
 data(form){
 
 const fd=new FormData(form);
@@ -105,15 +104,23 @@ city:fd.get("city"),
 state:fd.get("state"),
 pincode:fd.get("pincode")
 },
+
 payment:fd.get("paymentMethod"),
+
 items:Cart.items,
+
 subtotal:Cart.total(),
+
 discount:0,
+
 shipping:0,
+
 total:Cart.total()
+
 };
 
 },
+
 
 /*==========================================================
  Submit

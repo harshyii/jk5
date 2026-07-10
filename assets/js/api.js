@@ -96,22 +96,23 @@ ping(){return this.request("ping");},
 /*==========================================================
  Order
 ==========================================================*/
+
 async order(order={}){
 
 try{
 
+const fd=new FormData();
+
+fd.append("action","order");
+fd.append("order",JSON.stringify(order));
+
 const r=await fetch(CONFIG.API.BASE_URL,{
 method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-action:"order",
-order
-})
+body:fd
 });
 
 const text=await r.text();
+
 console.log("POST RESPONSE:",text);
 
 return JSON.parse(text);
@@ -129,7 +130,6 @@ data:null
 }
 
 }
-
 };
 
 export default API;
