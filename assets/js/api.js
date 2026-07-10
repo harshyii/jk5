@@ -89,10 +89,14 @@ async order(order={}){
 
 try{
 
+const data=new FormData();
+
+data.append("action","order");
+data.append("order",JSON.stringify(order));
+
 const r=await fetch(CONFIG.API.BASE_URL,{
 method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({action:CONFIG.ACTIONS.ORDER,order})
+body:data
 });
 
 if(!r.ok)throw Error(`HTTP ${r.status}`);
@@ -103,12 +107,15 @@ return await r.json();
 
 console.error("[ORDER]",e);
 
-return{success:false,message:e.message,data:null};
+return{
+success:false,
+message:e.message,
+data:null
+};
 
 }
 
 }
-
 };
 
 export default API;
