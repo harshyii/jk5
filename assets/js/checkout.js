@@ -150,7 +150,7 @@ return;
 
 Cart.clear();
 UI.toast("Order placed successfully.");
-location.href=`success.html?order=${res.orderId}`;
+location.href=`success.html?order=${res.data.orderId}`;
 
 }catch(err){
 
