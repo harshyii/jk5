@@ -44,7 +44,7 @@ Allow: /terms.html
 # Replace with your final domain
 # ==========================================================
 
-Sitemap: https://harshyii.github.io/jk-enterprises/sitemap.xml
+Sitemap: https://harshyii.github.io/jk5/sitemap.xml
 
 # ==========================================================
 # Crawl Delay

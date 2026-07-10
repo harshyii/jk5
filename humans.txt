@@ -4,7 +4,7 @@ Company:
 JK Enterprises
 
 Website:
-https://harshyii.github.io/jk-enterprises
+https://harshyii.github.io/jk5
 
 Location:
 Pehowa, Kurukshetra, Haryana, India

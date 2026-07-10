@@ -90,7 +90,7 @@ if("serviceWorker" in navigator){
 
 window.addEventListener("load",()=>{
 
-const base=location.pathname.startsWith("/jk-enterprises/")?"/jk-enterprises/":"/";
+const base=location.pathname.startsWith("/jk5/")?"/jk5/":"/";
 
 navigator.serviceWorker
 .register("./assets/js/sw.js")

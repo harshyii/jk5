@@ -4,85 +4,85 @@
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/</loc>
+<loc>https://harshyii.github.io/jk5/</loc>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/products.html</loc>
+<loc>https://harshyii.github.io/jk5/products.html</loc>
 <changefreq>daily</changefreq>
 <priority>0.95</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/blogs.html</loc>
+<loc>https://harshyii.github.io/jk5/blogs.html</loc>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/brands.html</loc>
+<loc>https://harshyii.github.io/jk5/brands.html</loc>
 <changefreq>weekly</changefreq>
 <priority>0.85</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/search.html</loc>
+<loc>https://harshyii.github.io/jk5/search.html</loc>
 <changefreq>weekly</changefreq>
 <priority>0.70</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/about.html</loc>
+<loc>https://harshyii.github.io/jk5/about.html</loc>
 <changefreq>monthly</changefreq>
 <priority>0.60</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/contact.html</loc>
+<loc>https://harshyii.github.io/jk5/contact.html</loc>
 <changefreq>monthly</changefreq>
 <priority>0.60</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/faq.html</loc>
+<loc>https://harshyii.github.io/jk5/faq.html</loc>
 <changefreq>monthly</changefreq>
 <priority>0.55</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/shipping.html</loc>
+<loc>https://harshyii.github.io/jk5/shipping.html</loc>
 <changefreq>yearly</changefreq>
 <priority>0.45</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/returns.html</loc>
+<loc>https://harshyii.github.io/jk5/returns.html</loc>
 <changefreq>yearly</changefreq>
 <priority>0.45</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/privacy.html</loc>
+<loc>https://harshyii.github.io/jk5/privacy.html</loc>
 <changefreq>yearly</changefreq>
 <priority>0.30</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/terms.html</loc>
+<loc>https://harshyii.github.io/jk5/terms.html</loc>
 <changefreq>yearly</changefreq>
 <priority>0.30</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/cart.html</loc>
+<loc>https://harshyii.github.io/jk5/cart.html</loc>
 <changefreq>weekly</changefreq>
 <priority>0.40</priority>
 </url>
 
 <url>
-<loc>https://harshyii.github.io/jk-enterprises/checkout.html</loc>
+<loc>https://harshyii.github.io/jk5/checkout.html</loc>
 <changefreq>weekly</changefreq>
 <priority>0.40</priority>
 </url>

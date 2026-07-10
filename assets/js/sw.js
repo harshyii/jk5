@@ -11,7 +11,7 @@
 const VERSION="jk-v1",
 STATIC=`${VERSION}-static`,
 DYNAMIC=`${VERSION}-dynamic`,
-BASE="/jk-enterprises";
+BASE="/jk5";
 
 const FILES=[
 `${BASE}/`,

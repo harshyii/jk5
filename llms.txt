@@ -1,7 +1,7 @@
 # JK Enterprises
 
 Website:
-https://harshyii.github.io/jk-enterprises
+https://harshyii.github.io/jk5
 
 Purpose:
 Wholesale and retail supplier of industrial products.
@@ -21,13 +21,13 @@ FAQs
 Policies
 
 Preferred Canonical:
-https://harshyii.github.io/jk-enterprises/
+https://harshyii.github.io/jk5/
 
 Primary Sitemap:
-https://harshyii.github.io/jk-enterprises/sitemap.xml
+https://harshyii.github.io/jk5/sitemap.xml
 
 Robots:
-https://harshyii.github.io/jk-enterprises/robots.txt
+https://harshyii.github.io/jk5/robots.txt
 
 License:
 All content © JK Enterprises unless otherwise stated.

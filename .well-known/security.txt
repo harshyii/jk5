@@ -1,12 +1,12 @@
 Contact: mailto:jkpehowa24@gmail.com
-Contact: https://harshyii.github.io/jk-enterprises/contact.html
+Contact: https://harshyii.github.io/jk5/contact.html
 
 Expires: 2027-12-31T23:59:59Z
 
 Preferred-Languages: en
 
-Canonical: https://harshyii.github.io/jk-enterprises/.well-known/security.txt
+Canonical: https://harshyii.github.io/jk5/.well-known/security.txt
 
-Policy: https://harshyii.github.io/jk-enterprises/privacy.html
+Policy: https://harshyii.github.io/jk5/privacy.html
 
-Acknowledgments: https://harshyii.github.io/jk-enterprises/about.html
+Acknowledgments: https://harshyii.github.io/jk5/about.html

@@ -11,7 +11,7 @@ const CONFIG=Object.freeze({
 ==========================================================*/
 
 SITE_NAME:"JK Enterprises",
-SITE_URL:"https://harshyii.github.io/jk-enterprises",
+SITE_URL:"https://harshyii.github.io/jk5",
 SITE_DESCRIPTION:"Power Tools, Hand Tools, Solar Products, Industrial Equipment and Automotive Care Products.",
 VERSION:"1.0.0",
 LANGUAGE:"en-IN",
