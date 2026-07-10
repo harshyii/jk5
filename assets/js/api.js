@@ -84,19 +84,18 @@ ping(){return this.request("ping");},
 /*==========================================================
  Order
 ==========================================================*/
-
 async order(order={}){
 
 try{
 
-const data=new FormData();
+const fd=new FormData();
 
-data.append("action","order");
-data.append("order",JSON.stringify(order));
+fd.append("action",CONFIG.ACTIONS.ORDER);
+fd.append("order",JSON.stringify(order));
 
 const r=await fetch(CONFIG.API.BASE_URL,{
 method:"POST",
-body:data
+body:fd
 });
 
 if(!r.ok)throw Error(`HTTP ${r.status}`);
@@ -114,6 +113,8 @@ data:null
 };
 
 }
+
+
 
 }
 };
