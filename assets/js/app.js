@@ -93,7 +93,7 @@ window.addEventListener("load",()=>{
 const base=location.pathname.startsWith("/jk-enterprises/")?"/jk-enterprises/":"/";
 
 navigator.serviceWorker
-.register(`${base}assets/js/sw.js`)
+.register("./assets/js/sw.js")
 .then(reg=>console.log("Service Worker Registered",reg))
 .catch(console.error);
 
