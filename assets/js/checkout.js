@@ -91,24 +91,32 @@ return true;
 ==========================================================*/
 
 data(form){
+
 const fd=new FormData(form);
 
 return{
+
 customer:{
 name:fd.get("name"),
 phone:fd.get("phone"),
-email:fd.get("email")
-},
-address:{
+email:fd.get("email"),
 address:fd.get("address"),
 city:fd.get("city"),
 state:fd.get("state"),
 pincode:fd.get("pincode")
 },
+
 payment:fd.get("paymentMethod"),
+
 items:Cart.items,
+
+subtotal:Cart.total(),
+discount:0,
+shipping:0,
 total:Cart.total()
+
 };
+
 },
 
 /*==========================================================

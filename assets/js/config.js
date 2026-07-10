@@ -23,7 +23,7 @@ CURRENCY_SYMBOL:"₹",
 ==========================================================*/
 
 API:{
-BASE_URL:"https://script.google.com/macros/s/AKfycbx-t8FunfbShlU2CSHn0h4-BGax_s4HCVXALG5OaIRy1XAZfNP9OifTUBKyyU_1kpM/exec",
+BASE_URL:"https://script.google.com/macros/s/AKfycbyGvNuFJ1jswB-HL4dTi8axxQDYBzi6VYgXRstTfKtcwf9YmsnMfP14qiBOUW0ybvLK/exec",
 TIMEOUT:15000
 },
 
