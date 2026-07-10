@@ -1,8 +1,5 @@
 /*==========================================================
- JK Enterprises
- analytics.js
- Version : 1.0
- Google Analytics 4
+ JK Enterprises | analytics.js
 ==========================================================*/
 
 "use strict";
@@ -12,437 +9,133 @@ import CONFIG from "./config.js";
 const Analytics={
 
 /*==========================================================
- Initialize
+ Core
 ==========================================================*/
 
-init(){
-
-    if(
-
-        !CONFIG.ANALYTICS.ENABLED||
-
-        typeof window.gtag!=="function"
-
-    )
-
-        return;
-
-    this.pageView();
-
-},
-
-
-
-/*==========================================================
- Send Event
-==========================================================*/
+on(){return CONFIG.ANALYTICS.ENABLED&&typeof window.gtag==="function";},
 
 event(name,params={}){
-
-    if(
-
-        !CONFIG.ANALYTICS.ENABLED||
-
-        typeof window.gtag!=="function"
-
-    )
-
-        return;
-
-    window.gtag(
-
-        "event",
-
-        name,
-
-        params
-
-    );
-
+if(this.on())window.gtag("event",name,params);
 },
 
-
+init(){this.pageView();},
 
 /*==========================================================
- Page View
+ Pages
 ==========================================================*/
 
 pageView(){
-
-    this.event(
-
-        "page_view",
-
-        {
-
-            page_title:document.title,
-
-            page_location:location.href,
-
-            page_path:location.pathname
-
-        }
-
-    );
-
+this.event("page_view",{
+page_title:document.title,
+page_location:location.href,
+page_path:location.pathname
+});
 },
 
-
-
-/*==========================================================
- Search
-==========================================================*/
-
-search(query){
-
-    this.event(
-
-        "search",
-
-        {
-
-            search_term:query
-
-        }
-
-    );
-
+search(search_term){
+this.event("search",{search_term});
 },
 
-
-
 /*==========================================================
- Product View
+ Products
 ==========================================================*/
 
-viewProduct(product){
-
-    this.event(
-
-        "view_item",
-
-        {
-
-            currency:CONFIG.CURRENCY,
-
-            value:Number(product.price)||0,
-
-            items:[{
-
-                item_id:product.id,
-
-                item_name:product.name,
-
-                item_brand:product.brand,
-
-                item_category:product.category,
-
-                price:Number(product.price)||0
-
-            }]
-
-        }
-
-    );
-
+viewProduct(p){
+this.event("view_item",{
+currency:CONFIG.CURRENCY,
+value:Number(p.price)||0,
+items:[{
+item_id:p.id,
+item_name:p.name,
+item_brand:p.brand,
+item_category:p.category,
+price:Number(p.price)||0
+}]
+});
 },
 
-
-
-/*==========================================================
- Product List
-==========================================================*/
-
-viewList(name,products=[]){
-
-    this.event(
-
-        "view_item_list",
-
-        {
-
-            item_list_name:name,
-
-            items:products.map(p=>({
-
-                item_id:p.id,
-
-                item_name:p.name,
-
-                price:Number(p.price)||0
-
-            }))
-
-        }
-
-    );
-
+viewList(item_list_name,products=[]){
+this.event("view_item_list",{
+item_list_name,
+items:products.map(p=>({
+item_id:p.id,
+item_name:p.name,
+price:Number(p.price)||0
+}))
+});
 },
 
-
-
-/*==========================================================
- Add To Cart
-==========================================================*/
-
-addToCart(product,qty=1){
-
-    this.event(
-
-        "add_to_cart",
-
-        {
-
-            currency:CONFIG.CURRENCY,
-
-            value:
-
-            Number(product.price)*qty,
-
-            items:[{
-
-                item_id:product.id,
-
-                item_name:product.name,
-
-                quantity:qty,
-
-                price:Number(product.price)
-
-            }]
-
-        }
-
-    );
-
+addToCart(p,quantity=1){
+this.event("add_to_cart",{
+currency:CONFIG.CURRENCY,
+value:(Number(p.price)||0)*quantity,
+items:[{
+item_id:p.id,
+item_name:p.name,
+quantity,
+price:Number(p.price)||0
+}]
+});
 },
 
-
-
-/*==========================================================
- Remove From Cart
-==========================================================*/
-
-removeFromCart(product){
-
-    this.event(
-
-        "remove_from_cart",
-
-        {
-
-            currency:CONFIG.CURRENCY,
-
-            value:Number(product.price),
-
-            items:[{
-
-                item_id:product.id,
-
-                item_name:product.name,
-
-                price:Number(product.price)
-
-            }]
-
-        }
-
-    );
-
+removeFromCart(p){
+this.event("remove_from_cart",{
+currency:CONFIG.CURRENCY,
+value:Number(p.price)||0,
+items:[{
+item_id:p.id,
+item_name:p.name,
+price:Number(p.price)||0
+}]
+});
 },
-
-
-
-/*==========================================================
- Begin Checkout
-==========================================================*/
 
 beginCheckout(cart){
-
-    this.event(
-
-        "begin_checkout",
-
-        {
-
-            currency:CONFIG.CURRENCY,
-
-            value:cart.total,
-
-            items:cart.items
-
-        }
-
-    );
-
+this.event("begin_checkout",{
+currency:CONFIG.CURRENCY,
+value:cart.total,
+items:cart.items
+});
 },
-
-
-
-/*==========================================================
- Purchase
-==========================================================*/
 
 purchase(order){
-
-    this.event(
-
-        "purchase",
-
-        {
-
-            transaction_id:
-
-            order.id,
-
-            currency:
-
-            CONFIG.CURRENCY,
-
-            value:
-
-            order.total,
-
-            items:
-
-            order.items
-
-        }
-
-    );
-
+this.event("purchase",{
+transaction_id:order.id,
+currency:CONFIG.CURRENCY,
+value:order.total,
+items:order.items
+});
 },
 
-
-
 /*==========================================================
- Blog View
+ Other Events
 ==========================================================*/
 
-viewBlog(article){
-
-    this.event(
-
-        "view_blog",
-
-        {
-
-            article_id:article.id,
-
-            article_title:article.title
-
-        }
-
-    );
-
+viewBlog(a){
+this.event("view_blog",{
+article_id:a.id,
+article_title:a.title
+});
 },
 
-
-
-/*==========================================================
- Brand View
-==========================================================*/
-
-viewBrand(brand){
-
-    this.event(
-
-        "view_brand",
-
-        {
-
-            brand_name:brand.name
-
-        }
-
-    );
-
+viewBrand(b){
+this.event("view_brand",{brand_name:b.name});
 },
-
-
-
-/*==========================================================
- Contact
-==========================================================*/
 
 contact(){
-
-    this.event(
-
-        "contact"
-
-    );
-
+this.event("contact");
 },
 
-
-
-/*==========================================================
- Share
-==========================================================*/
-
-share(type,id){
-
-    this.event(
-
-        "share",
-
-        {
-
-            content_type:type,
-
-            item_id:id
-
-        }
-
-    );
-
+share(content_type,item_id){
+this.event("share",{content_type,item_id});
 },
 
-
-
-/*==========================================================
- File Download
-==========================================================*/
-
-download(file){
-
-    this.event(
-
-        "file_download",
-
-        {
-
-            file_name:file
-
-        }
-
-    );
-
+download(file_name){
+this.event("file_download",{file_name});
 },
 
-
-
-/*==========================================================
- Exception
-==========================================================*/
-
-error(message){
-
-    this.event(
-
-        "exception",
-
-        {
-
-            description:message,
-
-            fatal:false
-
-        }
-
-    );
-
+error(description){
+this.event("exception",{description,fatal:false});
 }
 
 };

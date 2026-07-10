@@ -1,67 +1,80 @@
 /*==========================================================
  JK Enterprises
  app.css
- Version : 1.0
- Description : Master Stylesheet
+ Version : 2.0
+ Core Styles
 ==========================================================*/
-
 
 /*==========================================================
- Bootstrap
+ Root Variables
 ==========================================================*/
 
-@import url("bootstrap.min.css");
+:root{
 
+--primary:#0d6efd;
+--primary-dark:#0b5ed7;
+--secondary:#6c757d;
+--success:#198754;
+--danger:#dc3545;
+--warning:#ffc107;
+--info:#0dcaf0;
+
+--white:#fff;
+--light:#f8f9fa;
+--dark:#212529;
+
+--gray-100:#f8f9fa;
+--gray-200:#e9ecef;
+--gray-300:#dee2e6;
+--gray-400:#ced4da;
+--gray-500:#adb5bd;
+--gray-600:#6c757d;
+--gray-700:#495057;
+--gray-800:#343a40;
+--gray-900:#212529;
+
+--body-bg:#fff;
+--body-color:#212529;
+
+--border:1px solid #dee2e6;
+--border-color:#dee2e6;
+
+--shadow-sm:0 .125rem .25rem rgba(0,0,0,.075);
+--shadow:0 .5rem 1rem rgba(0,0,0,.15);
+--shadow-lg:0 1rem 3rem rgba(0,0,0,.175);
+
+--radius-sm:.25rem;
+--radius:.5rem;
+--radius-lg:1rem;
+--radius-pill:999px;
+
+--transition:.25s ease;
+
+--header-height:72px;
+
+--container:1320px;
+
+--font-family:
+system-ui,
+-apple-system,
+"Segoe UI",
+Roboto,
+Arial,
+sans-serif;
+
+}
 
 /*==========================================================
- Core
+ Reset
 ==========================================================*/
 
-@import url("variables.css");
+*,
+*::before,
+*::after{
 
-@import url("utilities.css");
+box-sizing:border-box;
 
-@import url("layout.css");
-
-@import url("components.css");
-
-@import url("forms.css");
-
-
-/*==========================================================
- Page Styles
-==========================================================*/
-
-@import url("product.css");
-
-@import url("blog.css");
-
-@import url("brand.css");
-
-@import url("cart.css");
-
-@import url("checkout.css");
-
-@import url("search.css");
-
-
-/*==========================================================
- Responsive
-==========================================================*/
-
-@import url("responsive.css");
-
-
-/*==========================================================
- Print
-==========================================================*/
-
-@import url("print.css");
-
-
-/*==========================================================
- Global Defaults
-==========================================================*/
+}
 
 html{
 
@@ -71,11 +84,13 @@ scroll-behavior:smooth;
 
 body{
 
+margin:0;
+
 font-family:var(--font-family);
 
-background:var(--white);
+background:var(--body-bg);
 
-color:var(--dark);
+color:var(--body-color);
 
 overflow-x:hidden;
 
@@ -93,11 +108,74 @@ min-height:60vh;
 
 img{
 
+display:block;
+
 max-width:100%;
 
 height:auto;
 
+}
+
+svg{
+
 display:block;
+
+}
+
+a{
+
+color:inherit;
+
+text-decoration:none;
+
+transition:var(--transition);
+
+}
+
+button{
+
+font:inherit;
+
+cursor:pointer;
+
+}
+
+input,
+select,
+textarea{
+
+font:inherit;
+
+}
+
+ul,
+ol{
+
+margin:0;
+
+padding:0;
+
+}
+
+li{
+
+list-style:none;
+
+}
+
+hr{
+
+border:0;
+
+border-top:var(--border);
+
+margin:1.5rem 0;
+
+}
+
+[hidden]{
+
+display:none!important;
 
 }
 
@@ -117,15 +195,452 @@ outline-offset:2px;
 
 }
 
-[hidden]{
+/*==========================================================
+ Layout
+==========================================================*/
 
-display:none!important;
+.container{
+
+max-width:var(--container);
 
 }
 
-/* ==========================================================
-MOBILE CART BAR
-========================================================== */
+section{
+
+position:relative;
+
+}
+
+.row{
+
+--bs-gutter-y:1.5rem;
+
+}
+
+.sticky-top-offset{
+
+position:sticky;
+
+top:calc(var(--header-height) + 20px);
+
+z-index:10;
+
+}
+
+/*==========================================================
+ Helpers
+==========================================================*/
+
+.img-cover{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+.img-contain{
+
+width:100%;
+
+height:100%;
+
+object-fit:contain;
+
+}
+
+.cursor-pointer{
+
+cursor:pointer;
+
+}
+
+.text-truncate-2{
+
+display:-webkit-box;
+
+-webkit-line-clamp:2;
+
+-webkit-box-orient:vertical;
+
+overflow:hidden;
+
+}
+
+.text-truncate-3{
+
+display:-webkit-box;
+
+-webkit-line-clamp:3;
+
+-webkit-box-orient:vertical;
+
+overflow:hidden;
+
+}
+/*==========================================================
+ Buttons
+==========================================================*/
+
+.btn{
+
+border-radius:var(--radius);
+
+transition:var(--transition);
+
+font-weight:500;
+
+}
+
+.btn:hover{
+
+transform:translateY(-1px);
+
+}
+
+.btn-icon{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:.5rem;
+
+}
+
+/*==========================================================
+ Cards
+==========================================================*/
+
+.card{
+
+border:var(--border);
+
+border-radius:var(--radius-lg);
+
+box-shadow:var(--shadow-sm);
+
+transition:var(--transition);
+
+overflow:hidden;
+
+background:#fff;
+
+}
+
+.card:hover{
+
+box-shadow:var(--shadow);
+
+}
+
+.card-img{
+
+overflow:hidden;
+
+}
+
+.card-img img{
+
+transition:.35s ease;
+
+}
+
+.card:hover .card-img img{
+
+transform:scale(1.04);
+
+}
+
+.card-title{
+
+font-weight:600;
+
+margin-bottom:.5rem;
+
+}
+
+.card-text{
+
+color:var(--gray-600);
+
+font-size:.95rem;
+
+}
+
+/*==========================================================
+ Badges
+==========================================================*/
+
+.badge{
+
+font-weight:500;
+
+border-radius:var(--radius-pill);
+
+}
+
+/*==========================================================
+ Price
+==========================================================*/
+
+.price{
+
+font-size:1.35rem;
+
+font-weight:700;
+
+color:var(--primary);
+
+}
+
+.price-old{
+
+text-decoration:line-through;
+
+color:var(--gray-500);
+
+font-size:.95rem;
+
+}
+
+.price-save{
+
+color:var(--success);
+
+font-weight:600;
+
+}
+
+/*==========================================================
+ Rating
+==========================================================*/
+
+.rating{
+
+display:flex;
+
+align-items:center;
+
+gap:.25rem;
+
+font-size:.9rem;
+
+}
+
+.rating i{
+
+color:#ffc107;
+
+}
+
+/*==========================================================
+ Forms
+==========================================================*/
+
+.form-control,
+
+.form-select{
+
+border-radius:var(--radius);
+
+transition:var(--transition);
+
+}
+
+.form-control:focus,
+
+.form-select:focus{
+
+border-color:var(--primary);
+
+box-shadow:0 0 0 .2rem rgba(13,110,253,.15);
+
+}
+
+.form-label{
+
+font-weight:500;
+
+}
+
+/*==========================================================
+ Alerts
+==========================================================*/
+
+.alert{
+
+border:none;
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow-sm);
+
+}
+
+/*==========================================================
+ Tables
+==========================================================*/
+
+.table{
+
+vertical-align:middle;
+
+}
+
+.table img{
+
+width:60px;
+
+height:60px;
+
+object-fit:contain;
+
+}
+
+/*==========================================================
+ Breadcrumb
+==========================================================*/
+
+.breadcrumb{
+
+margin-bottom:1rem;
+
+}
+
+.breadcrumb-item+.breadcrumb-item::before{
+
+content:"›";
+
+}
+
+/*==========================================================
+ Pagination
+==========================================================*/
+
+.pagination{
+
+justify-content:center;
+
+}
+
+.page-link{
+
+border-radius:var(--radius);
+
+margin:0 .15rem;
+
+}
+
+/*==========================================================
+ Loader
+==========================================================*/
+
+.loader{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:3rem 0;
+
+}
+
+.spinner{
+
+width:3rem;
+
+height:3rem;
+
+border:.3rem solid var(--gray-300);
+
+border-top-color:var(--primary);
+
+border-radius:50%;
+
+animation:spin .8s linear infinite;
+
+}
+
+@keyframes spin{
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/*==========================================================
+ Empty State
+==========================================================*/
+
+.empty-state{
+
+padding:4rem 1rem;
+
+text-align:center;
+
+color:var(--gray-600);
+
+}
+
+.empty-state i{
+
+font-size:3rem;
+
+margin-bottom:1rem;
+
+color:var(--gray-400);
+
+}
+
+/*==========================================================
+ Toast
+==========================================================*/
+
+.toast{
+
+border:none;
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+}
+
+/*==========================================================
+ Offcanvas
+==========================================================*/
+
+.offcanvas{
+
+border:none;
+
+}
+
+/*==========================================================
+ Modal
+==========================================================*/
+
+.modal-content{
+
+border:none;
+
+border-radius:var(--radius-lg);
+
+}
+
+/*==========================================================
+ Mobile Cart Bar
+==========================================================*/
 
 .mobile-cart-bar{
 
@@ -133,23 +648,23 @@ display:none;
 
 }
 
-@media (max-width:991.98px){
+@media(max-width:991.98px){
 
 .mobile-cart-bar{
 
 display:block;
 
-background:#fff;
-
-padding:10px 0;
-
-border-bottom:1px solid #e9ecef;
-
 position:sticky;
 
-top:72px;
+top:var(--header-height);
 
 z-index:1020;
+
+background:#fff;
+
+padding:.75rem 0;
+
+border-bottom:var(--border);
 
 }
 
@@ -160,4 +675,479 @@ height:46px;
 font-weight:600;
 
 }
+
 }
+
+/*==========================================================
+ Header
+==========================================================*/
+
+.site-header{
+
+position:sticky;
+
+top:0;
+
+z-index:1030;
+
+background:#fff;
+
+border-bottom:var(--border);
+
+box-shadow:var(--shadow-sm);
+
+}
+
+.navbar{
+
+min-height:var(--header-height);
+
+}
+
+.navbar-brand{
+
+font-weight:700;
+
+font-size:1.35rem;
+
+}
+
+.navbar-brand img{
+
+height:42px;
+
+width:auto;
+
+}
+
+.navbar-nav .nav-link{
+
+font-weight:500;
+
+padding:.75rem 1rem;
+
+transition:var(--transition);
+
+}
+
+.navbar-nav .nav-link:hover,
+
+.navbar-nav .nav-link.active{
+
+color:var(--primary);
+
+}
+
+/*==========================================================
+ Search Bar
+==========================================================*/
+
+.header-search{
+
+position:relative;
+
+width:100%;
+
+max-width:520px;
+
+}
+
+.header-search input{
+
+padding-right:48px;
+
+}
+
+.header-search button{
+
+position:absolute;
+
+right:0;
+
+top:0;
+
+bottom:0;
+
+width:48px;
+
+border:0;
+
+background:none;
+
+color:var(--gray-600);
+
+}
+
+/*==========================================================
+ Cart Badge
+==========================================================*/
+
+.cart-count{
+
+position:absolute;
+
+top:-6px;
+
+right:-6px;
+
+min-width:20px;
+
+height:20px;
+
+padding:0 5px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:.7rem;
+
+font-weight:700;
+
+background:var(--danger);
+
+color:#fff;
+
+border-radius:999px;
+
+}
+
+/*==========================================================
+ Hero
+==========================================================*/
+
+.hero{
+
+padding:5rem 0;
+
+background:var(--light);
+
+overflow:hidden;
+
+}
+
+.hero h1{
+
+font-weight:700;
+
+margin-bottom:1rem;
+
+}
+
+.hero p{
+
+font-size:1.1rem;
+
+color:var(--gray-600);
+
+margin-bottom:2rem;
+
+}
+
+.hero img{
+
+border-radius:var(--radius-lg);
+
+}
+
+/*==========================================================
+ Sections
+==========================================================*/
+
+.section{
+
+padding:4rem 0;
+
+}
+
+.section-sm{
+
+padding:2rem 0;
+
+}
+
+.section-lg{
+
+padding:6rem 0;
+
+}
+
+.section-title{
+
+font-size:2rem;
+
+font-weight:700;
+
+margin-bottom:.5rem;
+
+}
+
+.section-subtitle{
+
+color:var(--gray-600);
+
+margin-bottom:2.5rem;
+
+}
+
+/*==========================================================
+ Breadcrumb
+==========================================================*/
+
+.breadcrumb-wrapper{
+
+padding:.75rem 0;
+
+background:var(--gray-100);
+
+border-bottom:var(--border);
+
+}
+
+/*==========================================================
+ Page Header
+==========================================================*/
+
+.page-header{
+
+padding:3rem 0;
+
+background:var(--light);
+
+border-bottom:var(--border);
+
+}
+
+.page-title{
+
+font-size:2.5rem;
+
+font-weight:700;
+
+margin-bottom:.5rem;
+
+}
+
+.page-description{
+
+color:var(--gray-600);
+
+max-width:720px;
+
+}
+
+/*==========================================================
+ Footer
+==========================================================*/
+
+.site-footer{
+
+margin-top:4rem;
+
+background:var(--dark);
+
+color:#fff;
+
+}
+
+.site-footer a{
+
+color:#ced4da;
+
+}
+
+.site-footer a:hover{
+
+color:#fff;
+
+}
+
+.footer-top{
+
+padding:4rem 0 2rem;
+
+}
+
+.footer-bottom{
+
+padding:1rem 0;
+
+border-top:1px solid rgba(255,255,255,.1);
+
+font-size:.9rem;
+
+}
+
+/*==========================================================
+ Scroll To Top
+==========================================================*/
+
+.back-to-top{
+
+position:fixed;
+
+right:20px;
+
+bottom:20px;
+
+width:48px;
+
+height:48px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:50%;
+
+background:var(--primary);
+
+color:#fff;
+
+box-shadow:var(--shadow);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:var(--transition);
+
+z-index:1020;
+
+}
+
+.back-to-top.show{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+/*==========================================================
+ Animations
+==========================================================*/
+
+.fade-in{
+
+animation:fadeIn .4s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(12px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+/*==========================================================
+ Scrollbar
+==========================================================*/
+
+::-webkit-scrollbar{
+
+width:8px;
+
+height:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--gray-400);
+
+border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:var(--gray-600);
+
+}
+
+/*==========================================================
+HOME CAROUSEL
+==========================================================*/
+
+#heroCarousel .carousel-item{
+position:relative;
+height:450px;
+}
+
+#heroCarousel .carousel-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(.45);
+}
+
+#heroCarousel .carousel-item::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,
+rgba(0,0,0,.75) 0%,
+rgba(0,0,0,.45) 45%,
+rgba(0,0,0,.1) 100%);
+z-index:1;
+}
+
+#heroCarousel .carousel-caption{
+left:7%;
+right:auto;
+bottom:50%;
+transform:translateY(50%);
+max-width:520px;
+z-index:2;
+text-align:left;
+}
+
+#heroCarousel .carousel-control-prev,
+#heroCarousel .carousel-control-next{
+width:5%;
+}
+
+@media(max-width:768px){
+
+#heroCarousel .carousel-item{
+height:300px;
+}
+
+#heroCarousel .carousel-caption{
+left:5%;
+right:5%;
+bottom:20px;
+transform:none;
+max-width:none;
+}
+
+#heroCarousel .carousel-caption h1{
+font-size:2rem;
+}
+
+#heroCarousel .carousel-caption p{
+font-size:1rem;
+margin-bottom:1rem;
+}
+
+}
+

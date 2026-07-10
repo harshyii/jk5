@@ -1,0 +1,163 @@
+/*==========================================================
+ JK Enterprises
+ app.css
+ Version : 1.0
+ Description : Master Stylesheet
+==========================================================*/
+
+
+/*==========================================================
+ Bootstrap
+==========================================================*/
+
+@import url("bootstrap.min.css");
+
+
+/*==========================================================
+ Core
+==========================================================*/
+
+@import url("variables.css");
+
+@import url("utilities.css");
+
+@import url("layout.css");
+
+@import url("components.css");
+
+@import url("forms.css");
+
+
+/*==========================================================
+ Page Styles
+==========================================================*/
+
+@import url("product.css");
+
+@import url("blog.css");
+
+@import url("brand.css");
+
+@import url("cart.css");
+
+@import url("checkout.css");
+
+@import url("search.css");
+
+
+/*==========================================================
+ Responsive
+==========================================================*/
+
+@import url("responsive.css");
+
+
+/*==========================================================
+ Print
+==========================================================*/
+
+@import url("print.css");
+
+
+/*==========================================================
+ Global Defaults
+==========================================================*/
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:var(--font-family);
+
+background:var(--white);
+
+color:var(--dark);
+
+overflow-x:hidden;
+
+-webkit-font-smoothing:antialiased;
+
+-moz-osx-font-smoothing:grayscale;
+
+}
+
+main{
+
+min-height:60vh;
+
+}
+
+img{
+
+max-width:100%;
+
+height:auto;
+
+display:block;
+
+}
+
+::selection{
+
+background:var(--primary);
+
+color:#fff;
+
+}
+
+:focus-visible{
+
+outline:2px solid var(--primary);
+
+outline-offset:2px;
+
+}
+
+[hidden]{
+
+display:none!important;
+
+}
+
+/* ==========================================================
+MOBILE CART BAR
+========================================================== */
+
+.mobile-cart-bar{
+
+display:none;
+
+}
+
+@media (max-width:991.98px){
+
+.mobile-cart-bar{
+
+display:block;
+
+background:#fff;
+
+padding:10px 0;
+
+border-bottom:1px solid #e9ecef;
+
+position:sticky;
+
+top:72px;
+
+z-index:1020;
+
+}
+
+.mobile-cart-bar .btn{
+
+height:46px;
+
+font-weight:600;
+
+}
+}

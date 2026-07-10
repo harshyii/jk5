@@ -1,8 +1,5 @@
 /*==========================================================
- JK Enterprises
- brand.js
- Version : 1.0
- Brand Module
+ JK Enterprises | brand.js
 ==========================================================*/
 
 "use strict";
@@ -14,74 +11,42 @@ import UI from "./ui.js";
 const Brand={
 
 /*==========================================================
- Initialize
+ Init
 ==========================================================*/
 
 async init(){
-
-    if(Router.isBrands())
-
-        await this.list();
-
-    if(Router.isBrand())
-
-        await this.details();
-
+if(Router.isBrands())return this.list();
+if(Router.isBrand())return this.details();
 },
 
-
-
 /*==========================================================
- Brand Listing
+ Brand List
 ==========================================================*/
 
 async list(){
 
-    const grid = document.getElementById("brandGrid");
+const grid=document.getElementById("brandGrid");
+if(!grid)return;
 
-    if(!grid) return;
+UI.loader(grid);
 
-    UI.loader(grid);
+const r=await API.brands();
 
-    const response = await API.brands();
+if(!r.success||!r.data?.length){
+UI.empty(grid,"No Brands","Brands will appear here.");
+document.getElementById("brandCount")?.replaceChildren(document.createTextNode("0"));
+return;
+}
 
-    console.log("Brands API Response:", response);
+const brands=r.data;
 
-    if(
-        !response.success ||
-        !response.data?.length
-    ){
+document.getElementById("brandCount")?.replaceChildren(
+document.createTextNode(brands.length)
+);
 
-        UI.empty(
-            grid,
-            "No Brands",
-            "Brands will appear here."
-        );
-
-        const count = document.getElementById("brandCount");
-        if(count) count.textContent = 0;
-
-        return;
-
-    }
-
-    const brands = response.data;
-
-    console.table(brands);
-    console.log(brands[0]);
-
-    // Update brand count
-    const count = document.getElementById("brandCount");
-    if(count){
-        count.textContent = brands.length;
-    }
-
-    grid.innerHTML = brands
-        .map(brand => UI.brandCard(brand))
-        .join("");
+grid.innerHTML=brands.map(UI.brandCard).join("");
 
 },
-
 
 /*==========================================================
  Brand Details
@@ -89,69 +54,24 @@ async list(){
 
 async details(){
 
-    const page=
+const page=document.getElementById("brandDetails");
+if(!page)return;
 
-    document.getElementById(
+UI.loader(page);
 
-        "brandDetails"
+const id=Router.id();
 
-    );
+if(!id)
+return UI.error(page,"Brand not found.");
 
-    if(!page)return;
+const r=await API.brand(id);
 
-    UI.loader(page);
+if(!r.success||!r.data)
+return UI.error(page,"Unable to load brand.");
 
-    const id=
-
-    Router.id();
-
-    if(!id){
-
-        UI.error(
-
-            page,
-
-            "Brand not found."
-
-        );
-
-        return;
-
-    }
-
-    const response=
-
-    await API.brand(id);
-
-    if(
-
-        !response.success||
-
-        !response.data
-
-    ){
-
-        UI.error(
-
-            page,
-
-            "Unable to load brand."
-
-        );
-
-        return;
-
-    }
-
-    this.render(
-
-        response.data
-
-    );
+this.render(r.data);
 
 },
-
-
 
 /*==========================================================
  Render
@@ -159,31 +79,15 @@ async details(){
 
 render(brand){
 
-    document.title=
+document.title=`${brand.name} | JK Enterprises`;
 
-    `${brand.name} | JK Enterprises`;
+document.getElementById("brandDetails").innerHTML=
+UI.brand(brand);
 
-    const page=
-
-    document.getElementById(
-
-        "brandDetails"
-
-    );
-
-    page.innerHTML=
-
-    UI.brand(brand);
-
-    this.products(
-
-        brand.id
-
-    );
+this.products(brand.id);
+this.related(brand.id);
 
 },
-
-
 
 /*==========================================================
  Brand Products
@@ -191,63 +95,23 @@ render(brand){
 
 async products(id){
 
-    const grid=
+const grid=document.getElementById("brandProducts");
+if(!grid)return;
 
-    document.getElementById(
+UI.loader(grid);
 
-        "brandProducts"
+const r=await API.products({brand:id});
 
-    );
+if(!r.success||!r.data?.length)
+return UI.empty(
+grid,
+"No Products",
+"Products from this brand will appear here."
+);
 
-    if(!grid)return;
-
-    UI.loader(grid);
-
-    const response=
-
-    await API.products({
-
-        brand:id
-
-    });
-
-    if(
-
-        !response.success||
-
-        !response.data?.length
-
-    ){
-
-        UI.empty(
-
-            grid,
-
-            "No Products",
-
-            "Products from this brand will appear here."
-
-        );
-
-        return;
-
-    }
-
-    grid.innerHTML=
-
-    response.data
-
-    .map(
-
-        product=>UI.productCard(product)
-
-    )
-
-    .join("");
+grid.innerHTML=r.data.map(UI.productCard).join("");
 
 },
-
-
 
 /*==========================================================
  Related Brands
@@ -255,65 +119,28 @@ async products(id){
 
 async related(id){
 
-    const target=
+const target=document.getElementById("relatedBrands");
+if(!target)return;
 
-    document.getElementById(
+const r=await API.brands();
 
-        "relatedBrands"
+if(!r.success||!r.data?.length)return;
 
-    );
-
-    if(!target)return;
-
-    const response=
-
-    await API.brands();
-
-    if(
-
-        !response.success||
-
-        !response.data?.length
-
-    )return;
-
-    target.innerHTML=
-
-    response.data
-
-    .filter(
-
-        brand=>brand.id!==id
-
-    )
-
-    .slice(0,4)
-
-    .map(
-
-        brand=>UI.brandCard(brand)
-
-    )
-
-    .join("");
+target.innerHTML=r.data
+.filter(b=>b.id!==id)
+.slice(0,4)
+.map(UI.brandCard)
+.join("");
 
 },
-
-
 
 /*==========================================================
  Search
 ==========================================================*/
 
 search(name){
-
-    window.location=
-
-    `brands.html?q=${encodeURIComponent(name)}`;
-
+location.href=`brands.html?q=${encodeURIComponent(name)}`;
 },
-
-
 
 /*==========================================================
  Filter
@@ -321,29 +148,16 @@ search(name){
 
 filter(letter){
 
-    const cards=
+document.querySelectorAll(".brand-card").forEach(card=>{
 
-    document.querySelectorAll(
+const name=card.dataset.name||"";
 
-        ".brand-card"
+card.hidden=!(
+letter==="All"||
+name.startsWith(letter)
+);
 
-    );
-
-    cards.forEach(card=>{
-
-        const name=
-
-        card.dataset.name||"";
-
-        card.style.display=
-
-        letter==="All"||
-
-        name.startsWith(letter)
-
-        ?"":"none";
-
-    });
+});
 
 }
 

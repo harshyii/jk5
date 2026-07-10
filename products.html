@@ -1,193 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Products | JK Enterprises</title>
-
-<meta
-name="description"
-content="Browse industrial products including Power Tools, Hand Tools, Solar Products, Automotive Care Products and Accessories from JK Enterprises.">
-
-<meta
-name="keywords"
-content="Power Tools, Hand Tools, Solar Products, Industrial Equipment, JK Enterprises">
-
-<meta
-name="robots"
-content="index,follow">
-
-<link
-rel="canonical"
-href="https://harshyii.github.io/jk-enterprises/products.html">
-
-<!-- Bootstrap -->
-<link
-rel="stylesheet"
-href="assets/css/bootstrap.min.css">
-
-<link
-rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<!-- Main CSS -->
-<link
-rel="stylesheet"
-href="assets/css/app.css">
-
+<meta name="description" content="Browse Power Tools, Hand Tools, Solar Products, Automotive Care Products and Industrial Equipment from JK Enterprises.">
+<meta name="keywords" content="Power Tools, Hand Tools, Solar Products, Industrial Equipment">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://harshyii.github.io/jk-enterprises/products.html">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/app.css">
 </head>
 
 <body>
 
+<header id="siteHeader"></header>
+
 <!-- ==========================================================
-Header start
-====================================================== -->
-
-<header class="site-header sticky-top">
-
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-
-<div class="container">
-
-<a class="navbar-brand" href="index.html">
-
-<img src="assets/images/logo/logo.webp"
-height="42"
-alt="JK Enterprises">
-
-</a>
-
-<button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#mainNav">
-
-<span class="navbar-toggler-icon"></span>
-
-</button>
-
-<div
-class="collapse navbar-collapse"
-id="mainNav">
-
-<ul class="navbar-nav ms-auto align-items-lg-center">
-
-<li class="nav-item">
-<a class="nav-link" data-page="home" href="index.html">Home</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="products" href="products.html">Products</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="brands" href="brands.html">Brands</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="blogs" href="blogs.html">Blogs</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="about" href="about.html">About</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="contact" href="contact.html">Contact</a>
-</li>
-
-<li class="nav-item">
-
-<a
-href="cart.html"
-class="btn btn-primary position-relative">
-
-Cart
-
-
-<span class="cart-count" data-cart-count>0</span>
-
-
-</a>
-
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</nav>
-
-</header>
-<!-- ==========================================================
-MOBILE CART BAR
+PAGE HEADER
 ========================================================== -->
 
-<div class="mobile-cart-bar d-lg-none">
+<section class="py-5 bg-body-tertiary border-bottom">
 
 <div class="container">
 
-<a
-href="cart.html"
-class="btn btn-primary w-100 d-flex justify-content-between align-items-center">
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
 
 <div>
-
-<i class="bi bi-cart3 me-2"></i>
-
-Cart
-
+<h1 class="fw-bold mb-1">Products</h1>
+<p class="text-secondary mb-0">Showing <strong id="productCount">0</strong> Products</p>
 </div>
 
-<span
-id="cartCountMobile"
-class="badge bg-light text-dark">
-
-0
-
-</span>
-
-</a>
+<form action="search.html" method="get" class="col-12 col-lg-4">
+<input type="search" name="q" id="productSearch" class="form-control form-control-lg" placeholder="Search products..." autocomplete="off">
+</form>
 
 </div>
-
-</div>
-
-
-
-<!-- ==========================================================
-PAGE HERO
-========================================================== -->
-
-<section class="bg-light py-5 border-bottom">
-
-<div class="container">
-
-<h1 class="fw-bold">
-
-Products
-
-</h1>
-
-<p class="text-muted mb-0">
-
-Browse our complete catalogue of industrial products.
-
-</p>
 
 </div>
 
 </section>
-
-
 
 <!-- ==========================================================
 FILTERS
@@ -199,106 +51,25 @@ FILTERS
 
 <div class="row g-3">
 
-<!-- Search -->
-
-<div class="col-lg-4">
-
-<input
-
-type="search"
-
-class="form-control"
-
-id="productSearch"
-
-placeholder="Search products...">
-
+<div class="col-6 col-lg-4">
+<select id="categoryFilter" class="form-select">
+<option value="">All Categories</option>
+</select>
 </div>
 
-
-
-<!-- Category -->
-
-<div class="col-6 col-md-3 col-lg-3">
-
-<select
-class="form-select"
-id="categoryFilter">
-
-<option value="">
-
-All Categories
-
-</option>
-
-<!--
-Categories will load dynamically
--->
-
+<div class="col-6 col-lg-4">
+<select id="brandFilter" class="form-select">
+<option value="">All Brands</option>
 </select>
-
 </div>
 
-
-
-<!-- Brand -->
-
-<div class="col-6 col-md-3 col-lg-3">
-
-<select
-class="form-select"
-id="brandFilter">
-
-<option value="">
-
-All Brands
-
-</option>
-
-<!--
-Brands will load dynamically
--->
-
+<div class="col-12 col-lg-4">
+<select id="sortProducts" class="form-select">
+<option value="latest">Newest</option>
+<option value="priceLow">Price ↑</option>
+<option value="priceHigh">Price ↓</option>
+<option value="name">Name A–Z</option>
 </select>
-
-</div>
-
-
-
-<!-- Sort -->
-
-<div class="col-6 col-md-3 col-lg-2">
-
-<select
-class="form-select"
-id="sortProducts">
-
-<option value="latest">
-
-Newest
-
-</option>
-
-<option value="priceLow">
-
-Price ↑
-
-</option>
-
-<option value="priceHigh">
-
-Price ↓
-
-</option>
-
-<option value="name">
-
-Name
-
-</option>
-
-</select>
-
 </div>
 
 </div>
@@ -306,393 +77,25 @@ Name
 </div>
 
 </section>
-
-
-
-<!-- ==========================================================
-RESULT BAR
-========================================================== -->
-
-<section class="pb-3">
-
-<div class="container">
-
-<div class="d-flex
-justify-content-between
-align-items-center">
-
-<p class="mb-0">
-
-Showing
-
-<strong id="productCount">
-
-0
-
-</strong>
-
-Products
-
-</p>
-
-<div>
-
-<button
-class="btn btn-outline-secondary btn-sm">
-
-Grid
-
-</button>
-
-<button
-class="btn btn-outline-secondary btn-sm">
-
-List
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
 
 <!-- ==========================================================
 PRODUCT GRID
 ========================================================== -->
 
-<section class="pb-5">
+<main class="container pb-5">
 
-<div class="container">
+<div id="productGrid" class="row g-3"></div>
 
-<div
-class="row g-4"
-
-id="productGrid">
-
-<!--
-
-Dynamic Product Cards
-
--->
-
+<div class="text-center mt-4">
+<button id="loadMoreProducts" class="btn btn-primary d-none">Load More</button>
 </div>
 
-</div>
+</main>
 
-</section>
+<footer id="siteFooter"></footer>
 
-
-
-<!-- ==========================================================
-LOADING
-========================================================== -->
-
-<section
-id="loadingProducts"
-class="py-5 text-center d-none">
-
-<div class="container">
-
-<div
-class="spinner-border text-primary">
-
-</div>
-
-<p class="mt-3">
-
-Loading Products...
-
-</p>
-
-</div>
-
-</section>
-
-
-
-<!-- ==========================================================
-EMPTY STATE
-========================================================== -->
-
-<section
-id="emptyProducts"
-class="py-5 text-center d-none">
-
-<div class="container">
-
-<h3>
-
-No Products Found
-
-</h3>
-
-<p>
-
-Try changing your search or filters.
-
-</p>
-
-</div>
-
-</section>
-
-
-
-<!-- ==========================================================
-LOAD MORE
-========================================================== -->
-
-<section class="pb-5 text-center">
-
-<button
-
-id="loadMoreProducts"
-
-class="btn btn-primary">
-
-Load More
-
-</button>
-
-</section>
-
-
-<!-- ==========================================================
-FOOTER
-========================================================== -->
-
-<footer class="footer bg-dark text-light py-4 mt-5">
-
-<div class="container">
-
-<div class="row g-4">
-
-<!-- ======================================================
-COMPANY
-====================================================== -->
-
-<div class="col-12 col-md-6 col-lg-4">
-
-<a href="index.html" class="d-inline-block mb-3">
-
-<img
-src="assets/images/logo/logo-dark.webp"
-alt="JK Enterprises"
-width="50">
-
-</a>
-
-<p class="small mb-0">
-
-JK Enterprises supplies quality Power Tools, Hand Tools,
-Solar Products, Industrial Equipment and Automotive Care
-Products across India.
-
-</p>
-
-</div>
-
-<!-- ======================================================
-SHOP
-====================================================== -->
-
-<div class="col-6 col-md-3 col-lg-2">
-
-<h6 class="text-uppercase mb-3">
-
-Shop
-
-</h6>
-
-<ul class="list-unstyled small">
-
-<li class="mb-2">
-<a href="products.html" class="text-decoration-none text-light">
-Products
-</a>
-</li>
-
-<li class="mb-2">
-<a href="brands.html" class="text-decoration-none text-light">
-Brands
-</a>
-</li>
-
-<li class="mb-2">
-<a href="search.html" class="text-decoration-none text-light">
-Search
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<!-- ======================================================
-SUPPORT
-====================================================== -->
-
-<div class="col-6 col-md-3 col-lg-3">
-
-<h6 class="text-uppercase mb-3">
-
-Support
-
-</h6>
-
-<ul class="list-unstyled small">
-
-<li class="mb-2">
-<a href="faq.html" class="text-decoration-none text-light">
-FAQs
-</a>
-</li>
-
-<li class="mb-2">
-<a href="shipping.html" class="text-decoration-none text-light">
-Shipping Policy
-</a>
-</li>
-
-<li class="mb-2">
-<a href="returns.html" class="text-decoration-none text-light">
-Returns Policy
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<!-- ======================================================
-HELP
-====================================================== -->
-
-<div class="col-12 col-lg-3">
-
-<h6 class="text-uppercase mb-3">
-
-Need Help?
-
-</h6>
-
-<p class="small">
-
-Need assistance with products, pricing, stock availability
-or your order?
-
-</p>
-
-<a
-href="contact.html"
-class="btn btn-outline-light btn-sm">
-
-Contact Us
-
-</a>
-
-</div>
-
-</div>
-
-<!-- ======================================================
-BOTTOM BAR
-====================================================== -->
-
-<hr class="border-secondary my-4">
-
-<div class="row align-items-center gy-2">
-
-<div class="col-md-6 text-center text-md-start">
-
-<small>
-
-&copy;
-<span id="copyrightYear"></span>
-
-<strong>JK Enterprises</strong>
-
-All Rights Reserved.
-
-</small>
-
-</div>
-
-<div class="col-md-6 text-center text-md-end">
-
-<small>
-
-<a
-href="about.html"
-class="text-decoration-none text-light me-3">
-
-About
-
-</a>
-
-<a
-href="privacy.html"
-class="text-decoration-none text-light me-3">
-
-Privacy
-
-</a>
-
-<a
-href="terms.html"
-class="text-decoration-none text-light">
-
-Terms
-
-</a>
-
-</small>
-
-</div>
-
-</div>
-
-</div>
-
-</footer>
-
-<!-- ==========================================================
-AUTO YEAR
-========================================================== -->
-
-<script>
-
-document.getElementById("copyrightYear").textContent =
-new Date().getFullYear();
-
-</script>
-
-<!-- Bootstrap -->
-
-<script
-src="assets/vendor/bootstrap/bootstrap.bundle.min.js">
-</script>
-
-<!-- Product Page -->
-
-<script
-type="module"
-src="assets/js/product.js">
-</script>
-
-
-<!-- Common App -->
-
-<script
-type="module"
-src="assets/js/app.js">
-</script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="assets/js/app.js"></script>
 
 </body>
-
 </html>

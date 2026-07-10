@@ -1,900 +1,173 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blog | JK Enterprises</title>
-
-<meta
-name="description"
-content="Industrial buying guides and product information from JK Enterprises.">
-
-<meta
-name="robots"
-content="index,follow">
-
-<link
-rel="canonical"
-href="https://harshyii.github.io/jk-enterprises/blog.html">
-
-<link
-rel="stylesheet"
-href="assets/css/bootstrap.min.css">
-
-<link
-rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-<link
-rel="stylesheet"
-href="assets/css/app.css">
-
+<meta name="description" content="Industrial buying guides, product information and technical articles from JK Enterprises.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://harshyii.github.io/jk-enterprises/blog.html">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/app.css">
 </head>
 
 <body>
 
-<!-- ==========================================================
-Header start
-====================================================== -->
-
-<header class="site-header sticky-top">
-
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-
-<div class="container">
-
-<a class="navbar-brand" href="index.html">
-
-<img src="assets/images/logo/logo.webp"
-height="42"
-alt="JK Enterprises">
-
-</a>
-
-<button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#mainNav">
-
-<span class="navbar-toggler-icon"></span>
-
-</button>
-
-<div
-class="collapse navbar-collapse"
-id="mainNav">
-
-<ul class="navbar-nav ms-auto align-items-lg-center">
-
-<li class="nav-item">
-<a class="nav-link" data-page="home" href="index.html">Home</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="products" href="products.html">Products</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="brands" href="brands.html">Brands</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="blogs" href="blogs.html">Blogs</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="about" href="about.html">About</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="contact" href="contact.html">Contact</a>
-</li>
-
-<li class="nav-item ms-lg-3 d-none d-lg-block">
-
-<a
-href="cart.html"
-class="btn btn-primary position-relative">
-
-Cart
-
-
-
-</a>
-
-</li>
-</ul>
-
-</div>
-
-</div>
-
-</nav>
-
-</header>
-<!-- ==========================================================
-MOBILE CART BAR
-========================================================== -->
-
-<div class="mobile-cart-bar d-lg-none">
-
-<div class="container">
-
-<a
-href="cart.html"
-class="btn btn-primary w-100 d-flex justify-content-between align-items-center">
-
-<div>
-
-<i class="bi bi-cart3 me-2"></i>
-
-Cart
-
-</div>
-
-<span
-id="cartCountMobile"
-class="badge bg-light text-dark">
-
-0
-
-</span>
-
-</a>
-
-</div>
-
-</div>
-
-
+<header id="siteHeader"></header>
 
 <!-- ==========================================================
 BREADCRUMB
 ========================================================== -->
 
-<section class="bg-light border-bottom py-3">
-
+<nav class="bg-body-tertiary border-bottom py-3">
 <div class="container">
-
-<nav aria-label="breadcrumb">
-
 <ol class="breadcrumb mb-0">
-
-<li class="breadcrumb-item">
-
-<a href="index.html">
-
-Home
-
-</a>
-
-</li>
-
-<li class="breadcrumb-item">
-
-<a href="blogs.html">
-
-Blogs
-
-</a>
-
-</li>
-
-<li
-class="breadcrumb-item active"
-id="breadcrumbTitle">
-
-Loading...
-
-</li>
-
+<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+<li class="breadcrumb-item"><a href="blogs.html">Blogs</a></li>
+<li class="breadcrumb-item active" id="breadcrumbTitle">Loading...</li>
 </ol>
-
+</div>
 </nav>
-
-</div>
-
-</section>
-
-
-
-<!-- ==========================================================
-ARTICLE HERO
-========================================================== -->
-
-<section class="py-5">
-
-<div class="container">
-
-<div class="row">
-
-<div class="col-lg-10 mx-auto">
-
-<span
-id="blogCategory"
-class="badge bg-primary">
-
-Category
-
-</span>
-
-<h1
-id="blogTitle"
-class="display-5 fw-bold mt-3">
-
-Loading Article...
-
-</h1>
-
-<div
-class="d-flex flex-wrap gap-3 text-muted mt-3">
-
-<span>
-
-Author
-
-<strong id="blogAuthor">
-
-JK Enterprises
-
-</strong>
-
-</span>
-
-<span>
-
-Published
-
-<strong id="publishDate">
-
---
-
-</strong>
-
-</span>
-
-<span>
-
-Updated
-
-<strong id="updatedDate">
-
---
-
-</strong>
-
-</span>
-
-<span>
-
-Reading Time
-
-<strong id="readingTime">
-
-0 min
-
-</strong>
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ==========================================================
-FEATURED IMAGE
-========================================================== -->
-
-<section>
-
-<div class="container">
-
-<img
-
-id="featuredImage"
-
-src="assets/images/placeholders/no-blog.webp"
-
-class="img-fluid rounded shadow"
-
-alt="Blog Image"
-
-loading="lazy">
-
-</div>
-
-</section>
-
-
 
 <!-- ==========================================================
 ARTICLE
 ========================================================== -->
 
-<section class="py-5">
+<main class="container py-5">
 
-<div class="container">
-
-<div class="row">
+<div class="row g-5">
 
 <div class="col-lg-8">
 
-<article
-id="blogContent">
+<span id="blogCategory" class="badge text-bg-primary">Category</span>
 
-<!--
+<h1 id="blogTitle" class="display-5 fw-bold mt-3">Loading...</h1>
 
-Markdown rendered here
+<div class="d-flex flex-wrap gap-3 text-secondary small mb-4">
+<span>Author <strong id="blogAuthor">JK Enterprises</strong></span>
+<span>Published <strong id="publishDate">--</strong></span>
+<span>Updated <strong id="updatedDate">--</strong></span>
+<span><strong id="readingTime">0 min</strong> Read</span>
+</div>
 
--->
+<img id="featuredImage" src="assets/images/placeholders/no-blog.webp" class="img-fluid rounded mb-4" alt="Blog Image" loading="lazy">
 
-</article>
+<article id="blogContent"></article>
 
 </div>
 
-
-
-<!-- ======================================================
+<!-- ==========================================================
 SIDEBAR
-====================================================== -->
+========================================================== -->
 
-<div class="col-lg-4">
+<aside class="col-lg-4">
 
-<div class="sticky-top">
+<div class="position-sticky" style="top:1rem;">
 
-<div class="card mb-4">
-
+<div class="card mb-3">
 <div class="card-body">
-
-<h5>
-
-Article Information
-
-</h5>
-
-<hr>
-
-<p>
-
-Category
-
-<br>
-
-<strong id="sideCategory">
-
---
-
-</strong>
-
-</p>
-
-<p>
-
-Tags
-
-<br>
-
-<span id="blogTags">
-
---
-
-</span>
-
-</p>
-
+<h5>Article Info</h5>
+<p class="mb-2">Category<br><strong id="sideCategory">--</strong></p>
+<p class="mb-0">Tags<br><span id="blogTags">--</span></p>
 </div>
-
 </div>
-
-
 
 <div class="card">
-
 <div class="card-body">
-
-<h5>
-
-Share
-
-</h5>
-
+<h5>Share</h5>
 <div class="d-grid gap-2">
-
-<button
-class="btn btn-outline-success"
-data-share="whatsapp">
-
-WhatsApp
-
-</button>
-
-<button
-class="btn btn-outline-secondary"
-onclick="Blog.copyLink()">
-
-Copy Link
-
-</button>
-
+<button class="btn btn-outline-success" data-share="whatsapp">WhatsApp</button>
+<button class="btn btn-outline-secondary" onclick="Blog.copyLink()">Copy Link</button>
+</div>
+</div>
 </div>
 
 </div>
 
-</div>
+</aside>
 
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
+</main>
 
 <!-- ==========================================================
 RELATED PRODUCTS
 ========================================================== -->
 
-<section class="bg-light py-5">
-
+<section class="py-5 bg-body-tertiary">
 <div class="container">
-
-<div class="d-flex justify-content-between">
-
-<h2>
-
-Related Products
-
-</h2>
-
-<a href="products.html">
-
-View All
-
-</a>
-
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h2 class="h4 mb-0">Related Products</h2>
+<a href="products.html" class="small text-decoration-none">View All</a>
 </div>
-
-<div
-id="relatedProducts"
-class="row g-4 mt-3">
-
-<!-- Dynamic -->
-
+<div id="relatedProducts" class="row g-3"></div>
 </div>
-
-</div>
-
 </section>
 
-
-
 <!-- ==========================================================
-RELATED ARTICLES
+RELATED BLOGS
 ========================================================== -->
 
 <section class="py-5">
-
 <div class="container">
-
-<div class="d-flex justify-content-between">
-
-<h2>
-
-Related Articles
-
-</h2>
-
-<a href="blogs.html">
-
-View All
-
-</a>
-
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h2 class="h4 mb-0">Related Articles</h2>
+<a href="blogs.html" class="small text-decoration-none">View All</a>
 </div>
-
-<div
-id="relatedBlogs"
-class="row g-4 mt-3">
-
-<!-- Dynamic -->
-
+<div id="relatedBlogs" class="row g-3"></div>
 </div>
-
-</div>
-
 </section>
-
-
 
 <!-- ==========================================================
 AUTHOR
 ========================================================== -->
 
-<section class="bg-light py-5">
-
+<section class="py-5 bg-body-tertiary">
 <div class="container">
-
 <div class="card">
-
 <div class="card-body">
-
-<h3>
-
-About the Author
-
-</h3>
-
-<p
-id="authorDescription">
-
-Future dynamic author profile from Google Sheets.
-
-</p>
-
+<h3 class="h5">About the Author</h3>
+<p id="authorDescription" class="mb-0">Loading...</p>
 </div>
-
 </div>
-
 </div>
-
 </section>
-
-
 
 <!-- ==========================================================
 FAQ
 ========================================================== -->
 
 <section class="py-5">
-
 <div class="container">
-
-<h2>
-
-Frequently Asked Questions
-
-</h2>
-
-<div
-id="blogFAQ">
-
-<!-- Dynamic FAQ -->
-
+<h2 class="h4 mb-4">Frequently Asked Questions</h2>
+<div id="blogFAQ"></div>
 </div>
-
-</div>
-
 </section>
-
-
-
-<!-- ==========================================================
-COMMENTS
-Future
-========================================================== -->
-
-<section class="bg-light py-5">
-
-<div class="container">
-
-<h2>
-
-Comments
-
-</h2>
-
-<p>
-
-Future comments system.
-
-</p>
-
-</div>
-
-</section>
-
-
 
 <!-- ==========================================================
 NEWSLETTER
 ========================================================== -->
 
-<section class="bg-primary text-white py-5">
-
-<div class="container text-center">
-
-<h2>
-
-Never Miss a New Guide
-
-</h2>
-
-<p>
-
-Subscribe for buying guides, product launches and maintenance tips.
-
-</p>
-
-<form
-class="row justify-content-center mt-4">
-
+<section class="py-5 bg-primary text-white text-center">
+<div class="container">
+<h2>Never Miss a New Guide</h2>
+<p class="mb-4">Get buying guides, maintenance tips and product updates.</p>
+<form class="row g-2 justify-content-center">
 <div class="col-md-5">
-
-<input
-
-type="email"
-
-class="form-control"
-
-placeholder="Email Address">
-
+<input type="email" class="form-control" placeholder="Email Address">
 </div>
-
-<div class="col-md-auto">
-
-<button
-class="btn btn-light">
-
-Subscribe
-
-</button>
-
+<div class="col-auto">
+<button class="btn btn-light">Subscribe</button>
 </div>
-
 </form>
-
 </div>
-
 </section>
 
+<footer id="siteFooter"></footer>
 
-<!-- ==========================================================
-FOOTER
-========================================================== -->
-
-<footer class="footer bg-dark text-light py-4 mt-5">
-
-<div class="container">
-
-<div class="row g-4">
-
-<!-- ======================================================
-COMPANY
-====================================================== -->
-
-<div class="col-12 col-md-6 col-lg-4">
-
-<a href="index.html" class="d-inline-block mb-3">
-
-<img
-src="assets/images/logo/logo-dark.webp"
-alt="JK Enterprises"
-width="50">
-
-</a>
-
-<p class="small mb-0">
-
-JK Enterprises supplies quality Power Tools, Hand Tools,
-Solar Products, Industrial Equipment and Automotive Care
-Products across India.
-
-</p>
-
-</div>
-
-<!-- ======================================================
-SHOP
-====================================================== -->
-
-<div class="col-6 col-md-3 col-lg-2">
-
-<h6 class="text-uppercase mb-3">
-
-Shop
-
-</h6>
-
-<ul class="list-unstyled small">
-
-<li class="mb-2">
-<a href="products.html" class="text-decoration-none text-light">
-Products
-</a>
-</li>
-
-<li class="mb-2">
-<a href="brands.html" class="text-decoration-none text-light">
-Brands
-</a>
-</li>
-
-<li class="mb-2">
-<a href="search.html" class="text-decoration-none text-light">
-Search
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<!-- ======================================================
-SUPPORT
-====================================================== -->
-
-<div class="col-6 col-md-3 col-lg-3">
-
-<h6 class="text-uppercase mb-3">
-
-Support
-
-</h6>
-
-<ul class="list-unstyled small">
-
-<li class="mb-2">
-<a href="faq.html" class="text-decoration-none text-light">
-FAQs
-</a>
-</li>
-
-<li class="mb-2">
-<a href="shipping.html" class="text-decoration-none text-light">
-Shipping Policy
-</a>
-</li>
-
-<li class="mb-2">
-<a href="returns.html" class="text-decoration-none text-light">
-Returns Policy
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<!-- ======================================================
-HELP
-====================================================== -->
-
-<div class="col-12 col-lg-3">
-
-<h6 class="text-uppercase mb-3">
-
-Need Help?
-
-</h6>
-
-<p class="small">
-
-Need assistance with products, pricing, stock availability
-or your order?
-
-</p>
-
-<a
-href="contact.html"
-class="btn btn-outline-light btn-sm">
-
-Contact Us
-
-</a>
-
-</div>
-
-</div>
-
-<!-- ======================================================
-BOTTOM BAR
-====================================================== -->
-
-<hr class="border-secondary my-4">
-
-<div class="row align-items-center gy-2">
-
-<div class="col-md-6 text-center text-md-start">
-
-<small>
-
-&copy;
-<span id="copyrightYear"></span>
-
-<strong>JK Enterprises</strong>
-
-All Rights Reserved.
-
-</small>
-
-</div>
-
-<div class="col-md-6 text-center text-md-end">
-
-<small>
-
-<a
-href="about.html"
-class="text-decoration-none text-light me-3">
-
-About
-
-</a>
-
-<a
-href="privacy.html"
-class="text-decoration-none text-light me-3">
-
-Privacy
-
-</a>
-
-<a
-href="terms.html"
-class="text-decoration-none text-light">
-
-Terms
-
-</a>
-
-</small>
-
-</div>
-
-</div>
-
-</div>
-
-</footer>
-
-<!-- ==========================================================
-AUTO YEAR
-========================================================== -->
-
-<script>
-
-document.getElementById("copyrightYear").textContent =
-new Date().getFullYear();
-
-</script>
-
-<script
-src="assets/vendor/bootstrap/bootstrap.bundle.min.js">
-
-</script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script
-type="module"
-src="assets/js/blog.js">
-
-</script>
-
-<script
-type="module"
-src="assets/js/app.js">
-
-</script>
+<script type="module" src="assets/js/app.js"></script>
 
 </body>
-
 </html>

@@ -1,717 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Brand | JK Enterprises</title>
-
-<meta
-name="description"
-content="Explore products, buying guides and information about our trusted brands.">
-
-<meta
-name="robots"
-content="index,follow">
-
-<link
-rel="canonical"
-href="https://harshyii.github.io/jk-enterprises/brand.html">
-
-<link
-rel="stylesheet"
-href="assets/css/bootstrap.min.css">
-
-<link
-rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link
-rel="stylesheet"
-href="assets/css/app.css">
-
+<meta name="description" content="Explore products, buying guides and information about our trusted brands.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://harshyii.github.io/jk-enterprises/brand.html">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/app.css">
 </head>
 
 <body>
 
-<!-- ==========================================================
-Header start
-====================================================== -->
-
-<header class="site-header sticky-top">
-
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-
-<div class="container">
-
-<a class="navbar-brand" href="index.html">
-
-<img src="assets/images/logo/logo.webp"
-height="42"
-alt="JK Enterprises">
-
-</a>
-
-<button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#mainNav">
-
-<span class="navbar-toggler-icon"></span>
-
-</button>
-
-<div
-class="collapse navbar-collapse"
-id="mainNav">
-
-<ul class="navbar-nav ms-auto align-items-lg-center">
-
-<li class="nav-item">
-<a class="nav-link" data-page="home" href="index.html">Home</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="products" href="products.html">Products</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="brands" href="brands.html">Brands</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="blogs" href="blogs.html">Blogs</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="about" href="about.html">About</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" data-page="contact" href="contact.html">Contact</a>
-</li>
-
-<li class="nav-item ms-lg-3 d-none d-lg-block">
-
-<a
-href="cart.html"
-class="btn btn-primary position-relative">
-
-Cart
-
-
-
-</a>
-
-</li>
-</ul>
-
-</div>
-
-</div>
-
-</nav>
-
-</header>
-<!-- ==========================================================
-MOBILE CART BAR
-========================================================== -->
-
-<div class="mobile-cart-bar d-lg-none">
-
-<div class="container">
-
-<a
-href="cart.html"
-class="btn btn-primary w-100 d-flex justify-content-between align-items-center">
-
-<div>
-
-<i class="bi bi-cart3 me-2"></i>
-
-Cart
-
-</div>
-
-<span
-id="cartCountMobile"
-class="badge bg-light text-dark">
-
-0
-
-</span>
-
-</a>
-
-</div>
-
-</div>
-
-
+<header id="siteHeader"></header>
 
 <!-- ==========================================================
 BREADCRUMB
 ========================================================== -->
 
-<section class="bg-light border-bottom py-3">
-
+<nav class="bg-body-tertiary border-bottom py-3">
 <div class="container">
-
-<nav aria-label="breadcrumb">
-
 <ol class="breadcrumb mb-0">
-
-<li class="breadcrumb-item">
-
-<a href="index.html">
-
-Home
-
-</a>
-
-</li>
-
-<li class="breadcrumb-item">
-
-<a href="brands.html">
-
-Brands
-
-</a>
-
-</li>
-
-<li
-class="breadcrumb-item active"
-id="brandNameBreadcrumb">
-
-Loading...
-
-</li>
-
+<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+<li class="breadcrumb-item"><a href="brands.html">Brands</a></li>
+<li class="breadcrumb-item active" id="brandNameBreadcrumb">Loading...</li>
 </ol>
-
+</div>
 </nav>
 
-</div>
-
-</section>
-
-
-
 <!-- ==========================================================
-BRAND HERO
+BRAND
 ========================================================== -->
 
-<section class="py-5">
+<main class="container py-5">
 
-<div class="container">
-
-<div class="row align-items-center">
+<div class="row g-4 align-items-center mb-5">
 
 <div class="col-lg-3 text-center">
-
-<img
-
-id="brandLogo"
-
-src="assets/images/placeholders/no-brand.webp"
-
-class="img-fluid"
-
-alt="Brand Logo">
-
+<img id="brandLogo" src="assets/images/placeholders/no-brand.webp" class="img-fluid" alt="Brand Logo" loading="lazy">
 </div>
 
 <div class="col-lg-9">
 
-<h1 id="brandName">
+<h1 id="brandName" class="mb-3">Loading Brand...</h1>
 
-Loading Brand...
-
-</h1>
-
-<p
-id="brandDescription"
-class="lead">
-
-Loading Description...
-
-</p>
+<p id="brandDescription" class="lead text-secondary mb-3">Loading description...</p>
 
 <div class="d-flex flex-wrap gap-2">
-
-<span class="badge bg-primary">
-
-Products
-
-<span id="brandProductCount">
-
-0
-
-</span>
-
-</span>
-
-<span class="badge bg-success">
-
-Established
-
-<span id="brandYear">
-
---
-
-</span>
-
-</span>
-
-<span class="badge bg-dark">
-
-Country
-
-<span id="brandCountry">
-
---
-
-</span>
-
-</span>
-
+<span class="badge text-bg-primary">Products <span id="brandProductCount">0</span></span>
+<span class="badge text-bg-success">Established <span id="brandYear">--</span></span>
+<span class="badge text-bg-dark">Country <span id="brandCountry">--</span></span>
 </div>
 
 </div>
 
 </div>
-
-</div>
-
-</section>
-
-
 
 <!-- ==========================================================
-ABOUT BRAND
+ABOUT
 ========================================================== -->
 
-<section class="pb-5">
-
-<div class="container">
-
-<h2>
-
-About
-
-</h2>
-
-<div id="brandContent">
-
-<!-- Dynamic Markdown -->
-
-</div>
-
-</div>
-
+<section class="mb-5">
+<h2 class="h4 mb-3">About</h2>
+<div id="brandContent"></div>
 </section>
-
-
 
 <!-- ==========================================================
 PRODUCTS
 ========================================================== -->
 
-<section class="py-5 bg-light">
-
-<div class="container">
-
-<h2>
-
-Products
-
-</h2>
-
-<div
-id="brandProducts"
-class="row g-4">
-
-<!-- Dynamic -->
-
+<section class="mb-5">
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h2 class="h4 mb-0">Products</h2>
+<a href="products.html" class="small text-decoration-none">View All</a>
 </div>
-
-</div>
-
+<div id="brandProducts" class="row g-3"></div>
 </section>
-
-
 
 <!-- ==========================================================
 BUYING GUIDES
 ========================================================== -->
 
-<section class="py-5">
-
-<div class="container">
-
-<h2>
-
-Buying Guides
-
-</h2>
-
-<div
-id="brandBlogs"
-class="row g-4">
-
-<!-- Dynamic -->
-
+<section class="mb-5">
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h2 class="h4 mb-0">Buying Guides</h2>
+<a href="blogs.html" class="small text-decoration-none">View All</a>
 </div>
-
-</div>
-
+<div id="brandBlogs" class="row g-3"></div>
 </section>
-
-
 
 <!-- ==========================================================
-POPULAR CATEGORIES
+FEATURES
 ========================================================== -->
 
-<section class="py-5 bg-light">
-
-<div class="container">
-
-<h2>
-
-Popular Categories
-
-</h2>
-
-<div
-id="brandCategories"
-class="row g-3">
-
-<!-- Dynamic -->
-
-</div>
-
-</div>
-
+<section class="mb-5">
+<h2 class="h4 mb-3">Why Choose This Brand</h2>
+<div id="brandFeatures"></div>
 </section>
-
-
-
-<!-- ==========================================================
-WHY CHOOSE
-========================================================== -->
-
-<section class="py-5">
-
-<div class="container">
-
-<h2>
-
-Why Choose This Brand
-
-</h2>
-
-<div
-id="brandFeatures">
-
-<!-- Dynamic -->
-
-</div>
-
-</div>
-
-</section>
-
-
 
 <!-- ==========================================================
 FAQ
 ========================================================== -->
 
-<section class="py-5 bg-light">
-
-<div class="container">
-
-<h2>
-
-Frequently Asked Questions
-
-</h2>
-
-<div
-id="brandFAQ">
-
-<!-- Dynamic -->
-
-</div>
-
-</div>
-
+<section class="mb-5">
+<h2 class="h4 mb-3">Frequently Asked Questions</h2>
+<div id="brandFAQ"></div>
 </section>
-
-
 
 <!-- ==========================================================
 RELATED BRANDS
 ========================================================== -->
 
-<section class="py-5">
-
-<div class="container">
-
-<h2>
-
-Related Brands
-
-</h2>
-
-<div
-id="relatedBrands"
-class="row g-4">
-
-<!-- Dynamic -->
-
+<section>
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h2 class="h4 mb-0">Related Brands</h2>
+<a href="brands.html" class="small text-decoration-none">View All</a>
 </div>
-
-</div>
-
+<div id="relatedBrands" class="row g-3"></div>
 </section>
 
+</main>
 
-<!-- ==========================================================
-FOOTER
-========================================================== -->
+<footer id="siteFooter"></footer>
 
-<footer class="footer bg-dark text-light py-4 mt-5">
-
-<div class="container">
-
-<div class="row g-4">
-
-<!-- ======================================================
-COMPANY
-====================================================== -->
-
-<div class="col-12 col-md-6 col-lg-4">
-
-<a href="index.html" class="d-inline-block mb-3">
-
-<img
-src="assets/images/logo/logo-dark.webp"
-alt="JK Enterprises"
-width="50">
-
-</a>
-
-<p class="small mb-0">
-
-JK Enterprises supplies quality Power Tools, Hand Tools,
-Solar Products, Industrial Equipment and Automotive Care
-Products across India.
-
-</p>
-
-</div>
-
-<!-- ======================================================
-SHOP
-====================================================== -->
-
-<div class="col-6 col-md-3 col-lg-2">
-
-<h6 class="text-uppercase mb-3">
-
-Shop
-
-</h6>
-
-<ul class="list-unstyled small">
-
-<li class="mb-2">
-<a href="products.html" class="text-decoration-none text-light">
-Products
-</a>
-</li>
-
-<li class="mb-2">
-<a href="brands.html" class="text-decoration-none text-light">
-Brands
-</a>
-</li>
-
-<li class="mb-2">
-<a href="search.html" class="text-decoration-none text-light">
-Search
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<!-- ======================================================
-SUPPORT
-====================================================== -->
-
-<div class="col-6 col-md-3 col-lg-3">
-
-<h6 class="text-uppercase mb-3">
-
-Support
-
-</h6>
-
-<ul class="list-unstyled small">
-
-<li class="mb-2">
-<a href="faq.html" class="text-decoration-none text-light">
-FAQs
-</a>
-</li>
-
-<li class="mb-2">
-<a href="shipping.html" class="text-decoration-none text-light">
-Shipping Policy
-</a>
-</li>
-
-<li class="mb-2">
-<a href="returns.html" class="text-decoration-none text-light">
-Returns Policy
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<!-- ======================================================
-HELP
-====================================================== -->
-
-<div class="col-12 col-lg-3">
-
-<h6 class="text-uppercase mb-3">
-
-Need Help?
-
-</h6>
-
-<p class="small">
-
-Need assistance with products, pricing, stock availability
-or your order?
-
-</p>
-
-<a
-href="contact.html"
-class="btn btn-outline-light btn-sm">
-
-Contact Us
-
-</a>
-
-</div>
-
-</div>
-
-<!-- ======================================================
-BOTTOM BAR
-====================================================== -->
-
-<hr class="border-secondary my-4">
-
-<div class="row align-items-center gy-2">
-
-<div class="col-md-6 text-center text-md-start">
-
-<small>
-
-&copy;
-<span id="copyrightYear"></span>
-
-<strong>JK Enterprises</strong>
-
-All Rights Reserved.
-
-</small>
-
-</div>
-
-<div class="col-md-6 text-center text-md-end">
-
-<small>
-
-<a
-href="about.html"
-class="text-decoration-none text-light me-3">
-
-About
-
-</a>
-
-<a
-href="privacy.html"
-class="text-decoration-none text-light me-3">
-
-Privacy
-
-</a>
-
-<a
-href="terms.html"
-class="text-decoration-none text-light">
-
-Terms
-
-</a>
-
-</small>
-
-</div>
-
-</div>
-
-</div>
-
-</footer>
-
-<!-- ==========================================================
-AUTO YEAR
-========================================================== -->
-
-<script>
-
-document.getElementById("copyrightYear").textContent =
-new Date().getFullYear();
-
-</script>
-
-<script
-src="assets/vendor/bootstrap/bootstrap.bundle.min.js">
-
-</script>
-
-<script
-type="module"
-src="assets/js/brand.js">
-
-</script>
-
-<script
-type="module"
-src="assets/js/app.js">
-
-</script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="assets/js/app.js"></script>
 
 </body>
-
 </html>

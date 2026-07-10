@@ -1,8 +1,5 @@
 /*==========================================================
- JK Enterprises
- search.js
- Version : 1.0
- Search Module
+ JK Enterprises | search.js
 ==========================================================*/
 
 "use strict";
@@ -18,219 +15,69 @@ const Search={
 ==========================================================*/
 
 async init(){
-
-    this.bind();
-
-    if(Router.isSearch())
-
-        await this.results();
-
+this.bind();
+if(Router.isSearch())await this.results();
 },
 
-
-
 /*==========================================================
- Bind Search Boxes
+ Search Forms
 ==========================================================*/
 
 bind(){
-
-    document
-
-    .querySelectorAll(
-
-        "[data-search-form]"
-
-    )
-
-    .forEach(form=>{
-
-        form.addEventListener(
-
-            "submit",
-
-            e=>{
-
-                e.preventDefault();
-
-                const input=
-
-                form.querySelector(
-
-                    "[data-search-input]"
-
-                );
-
-                if(!input)return;
-
-                this.go(
-
-                    input.value
-
-                );
-
-            }
-
-        );
-
-    });
-
+document.querySelectorAll("[data-search-form]").forEach(form=>{
+form.addEventListener("submit",e=>{
+e.preventDefault();
+const input=form.querySelector("[data-search-input]");
+if(input?.value.trim())this.go(input.value);
+});
+});
 },
 
-
-
 /*==========================================================
- Search Page
+ Results
 ==========================================================*/
 
 async results(){
+const grid=document.getElementById("searchResults");
+if(!grid)return;
 
-    const grid=
+UI.loader(grid);
 
-    document.getElementById(
+const r=await API.search(Router.search(),Router.pageNumber());
 
-        "searchResults"
+if(!r.success||!r.data){
+UI.empty(grid,"No Results","Try another keyword.");
+return;
+}
 
-    );
-
-    if(!grid)return;
-
-    UI.loader(grid);
-
-    const response=
-
-    await API.search(
-
-        Router.search(),
-
-        Router.pageNumber()
-
-    );
-
-    if(
-
-        !response.success||
-
-        !response.data
-
-    ){
-
-        UI.empty(
-
-            grid,
-
-            "No Results",
-
-            "Try another keyword."
-
-        );
-
-        return;
-
-    }
-
-    this.render(
-
-        response.data
-
-    );
-
+this.render(r.data);
 },
-
-
 
 /*==========================================================
  Render
 ==========================================================*/
 
 render(data){
+const grid=document.getElementById("searchResults");
+if(!grid)return;
 
-    const grid=
+const cards={
+products:UI.productCard,
+blogs:UI.blogCard,
+brands:UI.brandCard
+};
 
-    document.getElementById(
+const html=Object.entries(cards).reduce((out,[key,card])=>
+out+(data[key]||[]).map(card).join("")
+,"");
 
-        "searchResults"
+if(!html){
+UI.empty(grid,"Nothing Found","No matching records.");
+return;
+}
 
-    );
-
-    if(!grid)return;
-
-    let html="";
-
-
-
-    if(data.products){
-
-        html+=data.products
-
-        .map(
-
-            item=>UI.productCard(item)
-
-        )
-
-        .join("");
-
-    }
-
-
-
-    if(data.blogs){
-
-        html+=data.blogs
-
-        .map(
-
-            item=>UI.blogCard(item)
-
-        )
-
-        .join("");
-
-    }
-
-
-
-    if(data.brands){
-
-        html+=data.brands
-
-        .map(
-
-            item=>UI.brandCard(item)
-
-        )
-
-        .join("");
-
-    }
-
-
-
-    if(!html){
-
-        UI.empty(
-
-            grid,
-
-            "Nothing Found",
-
-            "No matching records."
-
-        );
-
-        return;
-
-    }
-
-
-
-    grid.innerHTML=html;
-
-
-
-    this.summary(data);
-
+grid.innerHTML=html;
+this.summary(data);
 },
 
 /*==========================================================
@@ -238,161 +85,45 @@ render(data){
 ==========================================================*/
 
 summary(data){
+const box=document.getElementById("searchSummary");
+if(!box)return;
 
-    const box=
+const total=(data.products?.length||0)+(data.blogs?.length||0)+(data.brands?.length||0);
 
-    document.getElementById(
-
-        "searchSummary"
-
-    );
-
-    if(!box)return;
-
-    const products=
-
-    data.products?.length||0;
-
-    const blogs=
-
-    data.blogs?.length||0;
-
-    const brands=
-
-    data.brands?.length||0;
-
-    box.innerHTML=`
-
-<strong>
-
-${products+blogs+brands}
-
-</strong>
-
-results found
-
-`;
-
+box.innerHTML=`<strong>${total}</strong> results found`;
 },
 
-
-
 /*==========================================================
- Go
+ Navigation
 ==========================================================*/
 
 go(query){
-
-    query=query.trim();
-
-    if(!query)return;
-
-    window.location=
-
-    `search.html?q=${encodeURIComponent(query)}`;
-
+query=query.trim();
+if(query)location=`search.html?q=${encodeURIComponent(query)}`;
 },
 
-
-
-/*==========================================================
- Sort
-==========================================================*/
+url(key,value){
+const url=new URL(location);
+url.searchParams.set(key,value);
+location=url;
+},
 
 sort(value){
-
-    const url=
-
-    new URL(
-
-        window.location
-
-    );
-
-    url.searchParams.set(
-
-        "sort",
-
-        value
-
-    );
-
-    window.location=url;
-
+this.url("sort",value);
 },
-
-
-
-/*==========================================================
- Filter
-==========================================================*/
 
 filter(key,value){
-
-    const url=
-
-    new URL(
-
-        window.location
-
-    );
-
-    url.searchParams.set(
-
-        key,
-
-        value
-
-    );
-
-    window.location=url;
-
+this.url(key,value);
 },
-
-
-
-/*==========================================================
- Clear Filters
-==========================================================*/
-
-clear(){
-
-    window.location=
-
-    "search.html";
-
-},
-
-
-
-/*==========================================================
- Pagination
-==========================================================*/
 
 page(number){
+this.url("page",number);
+},
 
-    const url=
-
-    new URL(
-
-        window.location
-
-    );
-
-    url.searchParams.set(
-
-        "page",
-
-        number
-
-    );
-
-    window.location=url;
-
+clear(){
+location="search.html";
 }
 
 };
-
-
 
 export default Search;

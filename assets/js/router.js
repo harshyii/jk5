@@ -1,144 +1,65 @@
 /*==========================================================
- JK Enterprises
- router.js
- Version : 2.0
- Client Side Router
+ JK Enterprises | router.js
 ==========================================================*/
 
 "use strict";
 
-const Router = {
+const Router={
 
-    /*======================================================
-     Initialize
-    ======================================================*/
+/*==========================================================
+ Init
+==========================================================*/
 
-    init() {
+init(){
+this.page=location.pathname.split("/").pop().toLowerCase()||"index.html";
+this.params=Object.fromEntries(new URLSearchParams(location.search));
+},
 
-        this.page = this.currentPage();
-        this.params = Object.fromEntries(
-            new URLSearchParams(window.location.search)
-        );
+/*==========================================================
+ Query
+==========================================================*/
 
-    },
+query:(k,d="")=>Router.params[k]??d,
 
-    /*======================================================
-     Current Page
-    ======================================================*/
+id:()=>Router.query("id"),
+slug:()=>Router.query("slug"),
+brand:()=>Router.query("brand"),
+category:()=>Router.query("category"),
+search:()=>Router.query("q"),
+sort:()=>Router.query("sort"),
+filter:()=>Router.query("filter"),
+pageNumber:()=>Number(Router.query("page",1)),
 
-    currentPage() {
+/*==========================================================
+ Page
+==========================================================*/
 
-        const page = window.location.pathname
-            .split("/")
-            .pop()
-            .toLowerCase();
+/*==========================================================
+ Page
+==========================================================*/
 
-        return page || "index.html";
+is:p=>Router.page===`${p}.html`,
 
-    },
-
-    /*======================================================
-     URL Parameters
-    ======================================================*/
-
-    query(key, fallback = "") {
-
-        return this.params[key] ?? fallback;
-
-    },
-
-    /*======================================================
-     Common Parameters
-    ======================================================*/
-
-    id() {
-
-        return this.query("id");
-
-    },
-
-    slug() {
-
-        return this.query("slug");
-
-    },
-
-    brand() {
-
-        return this.query("brand");
-
-    },
-
-    category() {
-
-        return this.query("category");
-
-    },
-
-    search() {
-
-        return this.query("q");
-
-    },
-
-    sort() {
-
-        return this.query("sort");
-
-    },
-
-    filter() {
-
-        return this.query("filter");
-
-    },
-
-    pageNumber() {
-
-        return Number(this.query("page", 1));
-
-    },
-
-    /*======================================================
-     Page Checks
-    ======================================================*/
-
-    is(name) {
-
-        return this.page === name.toLowerCase();
-
-    },
-
-    isHome() { return this.is("index.html"); },
-
-    isProducts() { return this.is("products.html"); },
-
-    isProduct() { return this.is("product.html"); },
-
-    isBrands() { return this.is("brands.html"); },
-
-    isBrand() { return this.is("brand.html"); },
-
-    isBlogs() { return this.is("blogs.html"); },
-
-    isBlog() { return this.is("blog.html"); },
-
-    isSearch() { return this.is("search.html"); },
-
-    isCart() { return this.is("cart.html"); },
-
-    isCheckout() { return this.is("checkout.html"); },
-
-    isContact() { return this.is("contact.html"); },
-
-    isAbout() { return this.is("about.html"); },
-
-    isFAQ() { return this.is("faq.html"); },
-
-    is404() { return this.is("404.html"); }
+isHome:()=>Router.is("index"),
+isProducts:()=>Router.is("products"),
+isProduct:()=>Router.is("product"),
+isBrands:()=>Router.is("brands"),
+isBrand:()=>Router.is("brand"),
+isBlogs:()=>Router.is("blogs"),
+isBlog:()=>Router.is("blog"),
+isSearch:()=>Router.is("search"),
+isCart:()=>Router.is("cart"),
+isCheckout:()=>Router.is("checkout"),
+isAbout:()=>Router.is("about"),
+isContact:()=>Router.is("contact"),
+isFAQ:()=>Router.is("faq"),
+isPrivacy:()=>Router.is("privacy"),
+isTerms:()=>Router.is("terms"),
+isShipping:()=>Router.is("shipping"),
+isReturns:()=>Router.is("returns"),
+is404:()=>Router.is("404")
 
 };
-
 Router.init();
 
 export default Router;

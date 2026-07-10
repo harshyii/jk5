@@ -1,7 +1,5 @@
 /*==========================================================
- JK Enterprises
- home.js
- Homepage Module
+ JK Enterprises | home.js
 ==========================================================*/
 
 "use strict";
@@ -9,326 +7,115 @@
 import API from "./api.js";
 import UI from "./ui.js";
 
-const Home = {
+const Home={
 
 /*==========================================================
  Initialize
 ==========================================================*/
 
-async init(){
-
-    await this.load();
-
-},
+init(){this.load();},
 
 /*==========================================================
- Load Homepage
+ Homepage
 ==========================================================*/
 
 async load(){
 
-    this.loading();
+this.loading();
 
-    try{
+try{
 
-        const response = await API.homepage();
+const r=await API.homepage();
 
-        if(!response.success){
+if(!r.success)throw Error(r.message);
 
-            throw new Error(
+const d=r.data||{};
 
-                response.message ||
+await Promise.all([
+this.render("featuredProducts",d.products,"products",8,UI.productCard,"No Products Available","Browse Products","products.html"),
+this.render("featuredBrands",d.brands,"brands",8,UI.brandCard,"No Brands Available","Browse Brands","brands.html"),
+this.render("latestBlogs",d.blogs,"blogs",6,UI.blogCard,"No Articles Available","Read Blogs","blogs.html")
+]);
 
-                "Unable to load homepage."
+}catch(e){
 
-            );
+console.error(e);
 
-        }
+await Promise.all([
+this.render("featuredProducts",[],"products",8,UI.productCard,"No Products Available","Browse Products","products.html"),
+this.render("featuredBrands",[],"brands",8,UI.brandCard,"No Brands Available","Browse Brands","brands.html"),
+this.render("latestBlogs",[],"blogs",6,UI.blogCard,"No Articles Available","Read Blogs","blogs.html")
+]);
 
-        const data = response.data || {};
-
-        if(document.getElementById("featuredProducts")){
-
-            await this.products(
-
-                data.products || []
-
-            );
-
-        }
-
-        if(document.getElementById("featuredBrands")){
-
-            await this.brands(
-
-                data.brands || []
-
-            );
-
-        }
-
-        if(document.getElementById("latestBlogs")){
-
-            await this.blogs(
-
-                data.blogs || []
-
-            );
-
-        }
-
-    }
-
-    catch(error){
-
-        console.error(
-
-            "Homepage Error:",
-
-            error
-
-        );
-
-        if(document.getElementById("featuredProducts")){
-
-            await this.products([]);
-
-        }
-
-        if(document.getElementById("featuredBrands")){
-
-            await this.brands([]);
-
-        }
-
-        if(document.getElementById("latestBlogs")){
-
-            await this.blogs([]);
-
-        }
-
-    }
+}
 
 },
 
 /*==========================================================
- Loading Skeleton
+ Loading
 ==========================================================*/
 
 loading(){
-
-    this.skeleton("featuredProducts",4);
-
-    this.skeleton("featuredBrands",4);
-
-    this.skeleton("latestBlogs",3);
-
+["featuredProducts","featuredBrands"].forEach(id=>this.skeleton(id,4));
+this.skeleton("latestBlogs",3);
 },
 
 /*==========================================================
- Skeleton Cards
+ Skeleton
 ==========================================================*/
 
 skeleton(id,count){
 
-    const container=document.getElementById(id);
+const c=document.getElementById(id);
 
-    if(!container) return;
+if(!c)return;
 
-    container.innerHTML=
-
-    Array(count).fill(`
-
+c.innerHTML=Array(count).fill(`
 <div class="col-6 col-md-4 col-lg-3">
-
 <div class="card h-100">
-
-<div
-class="placeholder w-100"
-style="height:180px">
-</div>
-
+<div class="placeholder w-100" style="height:180px"></div>
 <div class="card-body">
-
-<p class="placeholder-glow">
-
-<span class="placeholder col-8"></span>
-
-</p>
-
-<p class="placeholder-glow">
-
-<span class="placeholder col-6"></span>
-
-</p>
-
+<p class="placeholder-glow"><span class="placeholder col-8"></span></p>
+<p class="placeholder-glow"><span class="placeholder col-6"></span></p>
 </div>
-
 </div>
-
-</div>
-
-`).join("");
+</div>`).join("");
 
 },
 
 /*==========================================================
- Featured Products
+ Generic Renderer
 ==========================================================*/
 
-async products(list){
+async render(id,list=[],apiMethod,limit,card,title,button,link){
 
-    const container=document.getElementById("featuredProducts");
+const c=document.getElementById(id);
 
-    if(!container) return;
+if(!c)return;
 
-    if(!list.length){
+if(!list.length){
 
-        try{
+try{
 
-            const response = await API.products();
+const r=await API[apiMethod]();
 
-            list = response.data || [];
+if(!r.success)throw Error();
 
-            list = list.slice(0,8);
+list=(r.data||[]).slice(0,limit);
 
-        }
+}catch{
 
-        catch{
+c.innerHTML=this.emptyCard(title,button,link);
 
-            container.innerHTML=this.emptyCard(
+return;
 
-                "No Products Available",
+}
 
-                "Browse Products",
+}
 
-                "products.html"
-
-            );
-
-            return;
-
-        }
-
-    }
-
-    container.innerHTML=
-
-    list.map(product=>
-
-        UI.productCard(product)
-
-    ).join("");
+c.innerHTML=list.map(card).join("");
 
 },
-
-/*==========================================================
- Featured Brands
-==========================================================*/
-
-async brands(list){
-
-    const container=document.getElementById("featuredBrands");
-
-    if(!container) return;
-
-    if(!list.length){
-
-        try{
-
-            const response = await API.brands();
-
-            list = response.data || [];
-
-            list=list.slice(0,8);
-
-        }
-
-        catch{
-
-            container.innerHTML=this.emptyCard(
-
-                "No Brands Available",
-
-                "Browse Brands",
-
-                "brands.html"
-
-            );
-
-            return;
-
-        }
-
-    }
-
-    container.innerHTML=
-
-    list.map(brand=>
-
-        UI.brandCard(brand)
-
-    ).join("");
-
-},
-
-/*==========================================================
- Latest Blogs
-==========================================================*/
-
-async blogs(list){
-
-    const container = document.getElementById("latestBlogs");
-
-    if(!container) return;
-
-    if(!list.length){
-
-        try{
-
-            const response = await API.blogs();
-
-            if(
-                !response.success ||
-                !response.data?.length
-            ){
-                throw new Error("No blogs found");
-            }
-
-            list = response.data.slice(0,6);
-
-        }
-
-        catch(error){
-
-            console.error("Blogs Error:", error);
-
-            container.innerHTML = this.emptyCard(
-
-                "No Articles Available",
-
-                "Read Blogs",
-
-                "blogs.html"
-
-            );
-
-            return;
-
-        }
-
-    }
-
-    container.innerHTML =
-
-        list.map(blog =>
-
-            UI.blogCard(blog)
-
-        ).join("");
-
-},
-
 
 /*==========================================================
  Empty Card
@@ -337,53 +124,19 @@ async blogs(list){
 emptyCard(title,button,link){
 
 return`
-
 <div class="col-12">
-
 <div class="card border-0 shadow-sm">
-
 <div class="card-body text-center py-5">
-
-<h4>
-
-${title}
-
-</h4>
-
-<p class="text-muted">
-
-Content will appear here once it is added.
-
-</p>
-
-<a
-
-href="${link}"
-
-class="btn btn-primary mt-3">
-
-${button}
-
-</a>
-
+<h4>${title}</h4>
+<p class="text-muted mb-3">Content will appear here once available.</p>
+<a href="${link}" class="btn btn-primary">${button}</a>
 </div>
-
 </div>
-
-</div>
-
-`;
-
+</div>`;
 }
 
 };
 
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    ()=>Home.init()
-
-);
+document.addEventListener("DOMContentLoaded",()=>Home.init());
 
 export default Home;

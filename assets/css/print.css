@@ -1,314 +1,177 @@
 /*==========================================================
  JK Enterprises
  print.css
+ Version : 2.0
 ==========================================================*/
 
 @media print{
 
 /*==========================================================
- Page Setup
+ Page
 ==========================================================*/
 
 @page{
-
-size:A4;
-
-margin:15mm;
-
+margin:12mm;
+size:auto;
 }
 
 html,
 body{
-
 background:#fff!important;
-
 color:#000!important;
-
-font-size:12pt;
-
+font:12pt Arial,sans-serif;
 line-height:1.5;
-
+overflow:visible!important;
 }
 
-
-
 /*==========================================================
- Hide Unnecessary Elements
+ Hide UI
 ==========================================================*/
 
 header,
 footer,
 nav,
 aside,
-.hero,
-.search-box,
-.search-sidebar,
-.pagination,
-.newsletter,
-.cart-actions,
-.product-actions,
-.share-buttons,
-.related-products,
-.related-blogs,
-.brand-contact,
-.checkout-security,
-.payment-icons,
+.mobile-cart-bar,
+.offcanvas,
+.modal,
+.toast,
 .btn,
 button,
 form,
-iframe,
-video{
-
+input,
+select,
+textarea,
+.pagination,
+.breadcrumb,
+.search-bar,
+.search-box,
+.filters,
+.filter-bar,
+.share-buttons,
+.social-links,
+.related-products,
+.related-blogs,
+.newsletter,
+#backToTop,
+#chatWidget,
+#cartDrawer,
+#siteHeader,
+#siteFooter{
 display:none!important;
-
 }
-
-
 
 /*==========================================================
  Layout
 ==========================================================*/
 
-.container{
-
+.container,
+.container-fluid,
+.row,
+.col,
+[class*="col-"]{
 width:100%!important;
-
 max-width:none!important;
-
-padding:0!important;
-
 margin:0!important;
-
+padding:0!important;
+float:none!important;
 }
-
-main{
-
-width:100%!important;
-
-}
-
-
-
-/*==========================================================
- Links
-==========================================================*/
-
-a{
-
-color:#000!important;
-
-text-decoration:none!important;
-
-}
-
-a[href]::after{
-
-content:" (" attr(href) ")";
-
-font-size:10pt;
-
-color:#666;
-
-}
-
-
 
 /*==========================================================
  Images
 ==========================================================*/
 
 img{
-
 max-width:100%!important;
-
+height:auto!important;
 page-break-inside:avoid;
-
+break-inside:avoid;
 }
-
-
 
 /*==========================================================
  Tables
 ==========================================================*/
 
 table{
-
-width:100%!important;
-
+width:100%;
 border-collapse:collapse;
-
 page-break-inside:auto;
+}
 
+thead{
+display:table-header-group;
 }
 
 tr{
-
 page-break-inside:avoid;
-
-page-break-after:auto;
-
 }
 
 th,
 td{
-
 border:1px solid #000;
-
-padding:8px;
-
+padding:6px;
 }
 
+/*==========================================================
+ Typography
+==========================================================*/
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+page-break-after:avoid;
+break-after:avoid;
+}
+
+p,
+li,
+blockquote{
+orphans:3;
+widows:3;
+}
+
+a{
+color:#000!important;
+text-decoration:underline;
+}
+
+a[href^="http"]::after{
+content:" (" attr(href) ")";
+font-size:9pt;
+}
+
+/*==========================================================
+ Cards
+==========================================================*/
+
+.card{
+border:1px solid #ccc!important;
+box-shadow:none!important;
+break-inside:avoid;
+page-break-inside:avoid;
+}
 
 /*==========================================================
  Product Page
 ==========================================================*/
 
-.product-wrapper{
-
-display:block;
-
-}
-
-.product-gallery{
-
-margin-bottom:20px;
-
-}
-
-.product-info{
-
-width:100%;
-
-}
-
-
-
-/*==========================================================
- Blog
-==========================================================*/
-
+.product-gallery,
+.product-info,
 .blog-content{
-
-font-size:12pt;
-
-line-height:1.7;
-
+width:100%!important;
+max-width:none!important;
 }
-
-.blog-content h1,
-.blog-content h2,
-.blog-content h3{
-
-page-break-after:avoid;
-
-}
-
-
 
 /*==========================================================
- Checkout
+ Cart / Checkout
 ==========================================================*/
 
-.order-summary{
-
-border:1px solid #000;
-
-padding:15px;
-
-box-shadow:none;
-
-}
-
-
-
-/*==========================================================
- Cart
-==========================================================*/
-
-.cart-item{
-
-border:1px solid #000;
-
-margin-bottom:10px;
-
+.cart-item,
+.checkout-item{
 page-break-inside:avoid;
-
-}
-
-
-
-/*==========================================================
- Brand
-==========================================================*/
-
-.brand-banner{
-
-display:none;
-
-}
-
-
-
-/*==========================================================
- Colors
-==========================================================*/
-
-*{
-
-background:transparent!important;
-
-color:#000!important;
-
-box-shadow:none!important;
-
-text-shadow:none!important;
-
-}
-
-
-
-/*==========================================================
- Page Breaks
-==========================================================*/
-
-h1,
-h2,
-h3{
-
-page-break-after:avoid;
-
-}
-
-img,
-table,
-blockquote{
-
-page-break-inside:avoid;
-
-}
-
-
-
-/*==========================================================
- Footer
-==========================================================*/
-
-body::after{
-
-content:
-"© JK Enterprises";
-
-display:block;
-
-margin-top:20px;
-
-text-align:center;
-
-font-size:10pt;
-
-color:#555;
-
 }
 
 }

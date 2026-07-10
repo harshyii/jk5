@@ -1,299 +1,132 @@
 /*==========================================================
- JK Enterprises
- app.js
- Version : 2.0
- Application Bootstrap
+ JK Enterprises | app.js
 ==========================================================*/
 
 "use strict";
 
-/*==========================================================
- IMPORTS
-==========================================================*/
-
 import Router from "./router.js";
+import Layout from "./layout.js";
 import SEO from "./seo.js";
-
+import Home from "./home.js";
 import Product from "./product.js";
 import Blog from "./blog.js";
 import Brand from "./brand.js";
-import Cart from "./cart.js";
-import Home from "./home.js";
-
-import Checkout from "./checkout.js";
 import Search from "./search.js";
+import Cart from "./cart.js";
+import Checkout from "./checkout.js";
 
+const App={
 
 /*==========================================================
- APPLICATION
+ Initialize
 ==========================================================*/
 
-const App = {
+async init(){
+try{
+document.documentElement.classList.remove("no-js");
+Router.init();
+Layout.init();
+Cart.init();
+SEO.init();
+this.events();
+await this.page();
+console.log("JK Enterprises Loaded");
+}catch(e){
+console.error(e);
+}
+},
 
-    /*======================================================
-     Initialize
-    ======================================================*/
+/*==========================================================
+ Current Page
+==========================================================*/
 
-    async init(){
+async page(){
 
-        try{
+if(Router.isHome())return Home.init();
 
-            document.documentElement.classList.remove("no-js");
+if(Router.isProducts())return Product.catalog();
 
-            this.events();
+if(Router.isProduct())return Product.details();
 
-            // Initialize cart globally
-            Cart.init();
-        Cart.render();
+if(Router.isBlogs())return Blog.catalog();
 
-            // Load current page
-            await this.page();
-            await Home.init();
+if(Router.isBlog())return Blog.details();
 
-            // Initialize SEO
-            SEO.init();
+if(Router.isBrands())return Brand.list();
 
-            console.log("JK Enterprises Loaded");
+if(Router.isBrand())return Brand.details();
 
-        }
+if(Router.isSearch())return Search.init();
 
-        catch(error){
+if(Router.isCart()){
+Cart.render();
+return;
+}
 
-            console.error(error);
+if(Router.isCheckout())return Checkout.init();
 
-        }
+},
 
-    },
+/*==========================================================
+ Global Events
+==========================================================*/
 
+events(){
 
+window.addEventListener("online",()=>console.log("Online"));
 
-    /*======================================================
-     Current Page
-    ======================================================*/
-
-    async page(){
-
-        if(Router.isProducts()){
-
-            await Product.catalog();
-
-            return;
-
-        }
-
-        if(Router.isProduct()){
-
-            await Product.details();
-
-            return;
-
-        }
-
-        if(Router.isBlogs()){
-
-            if(typeof Blog.catalog==="function")
-
-                await Blog.catalog();
-
-            return;
-
-        }
-
-        if(Router.isBlog()){
-
-            if(typeof Blog.details==="function")
-
-                await Blog.details();
-
-            return;
-
-        }
-
-        if(Router.isBrands()){
-
-    if(typeof Brand.list==="function")
-
-        await Brand.list();
-
-    return;
+window.addEventListener("offline",()=>console.log("Offline"));
 
 }
 
-        if(Router.isBrand()){
-
-            if(typeof Brand.details==="function")
-
-                await Brand.details();
-
-            return;
-
-        }
-
-        if(Router.isSearch()){
-
-            if(typeof Search.init==="function")
-
-                await Search.init();
-
-            return;
-
-        }
-
-        if(Router.isCart()){
-
-            if(typeof Cart.init==="function")
-
-                await Cart.init();
-        Cart.render();
-
-            return;
-
-        }
-
-        if(Router.isCheckout()){
-
-            if(typeof Checkout.init==="function")
-
-                await Checkout.init();
-
-            return;
-
-        }
-
-    },
-
-
-
-    /*======================================================
-     Global Events
-    ======================================================*/
-
-    events(){
-
-        window.addEventListener("online",()=>{
-
-            console.log("Online");
-
-        });
-
-        window.addEventListener("offline",()=>{
-
-            console.log("Offline");
-
-        });
-
-        document.addEventListener("visibilitychange",()=>{
-
-            if(document.hidden) return;
-
-        });
-
-        window.addEventListener("resize",()=>{});
-
-        window.addEventListener("scroll",()=>{});
-
-    }
-
 };
 
-
-
+document.addEventListener("DOMContentLoaded",()=>App.init());
 /*==========================================================
- DOM READY
-==========================================================*/
-
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    ()=>App.init()
-
-);
-
-
-
-/*==========================================================
- SERVICE WORKER
+ Service Worker
 ==========================================================*/
 
 if("serviceWorker" in navigator){
 
-    window.addEventListener("load",()=>{
+window.addEventListener("load",()=>{
 
-        const base = location.pathname.startsWith("/jk-enterprises/")
-            ? "/jk-enterprises/"
-            : "/";
+const base=location.pathname.startsWith("/jk-enterprises/")?"/jk-enterprises/":"/";
 
-        navigator.serviceWorker
-
-            .register(base + "assets/js/sw.js")
-
-            .then(reg=>{
-
-                console.log("Service Worker registered",reg);
-
-            })
-
-            .catch(err=>{
-
-                console.error(err);
-
-            });
-
-    });
-
-    /*======================================================
- Auto Close Mobile Menu
-======================================================*/
-
-document.addEventListener("click",(e)=>{
-
-    const nav = document.getElementById("mainNav");
-
-    const button = document.querySelector(".navbar-toggler");
-
-    if(
-        !nav ||
-        !button ||
-        !nav.classList.contains("show")
-    ) return;
-
-    if(
-        nav.contains(e.target) ||
-        button.contains(e.target)
-    ) return;
-
-    bootstrap.Collapse
-        .getOrCreateInstance(nav)
-        .hide();
-
-});
-
-document
-.querySelectorAll("#mainNav .nav-link")
-.forEach(link=>{
-
-    link.addEventListener("click",()=>{
-
-        const nav = document.getElementById("mainNav");
-
-        if(
-            nav &&
-            nav.classList.contains("show")
-        ){
-
-            bootstrap.Collapse
-                .getOrCreateInstance(nav)
-                .hide();
-
-        }
-
-    });
+navigator.serviceWorker
+.register(`${base}assets/js/sw.js`)
+.then(reg=>console.log("Service Worker Registered",reg))
+.catch(console.error);
 
 });
 
 }
 
+/*==========================================================
+ Auto Close Mobile Navbar
+==========================================================*/
 
+document.addEventListener("click",e=>{
+
+const nav=document.getElementById("mainNav");
+const btn=document.querySelector(".navbar-toggler");
+
+if(!nav||!btn||!nav.classList.contains("show"))return;
+
+if(nav.contains(e.target)||btn.contains(e.target))return;
+
+bootstrap.Collapse.getOrCreateInstance(nav).hide();
+
+});
+
+document.querySelectorAll("#mainNav .nav-link").forEach(link=>
+link.addEventListener("click",()=>{
+
+const nav=document.getElementById("mainNav");
+
+if(nav?.classList.contains("show"))
+bootstrap.Collapse.getOrCreateInstance(nav).hide();
+
+})
+);
 
 export default App;

@@ -1,8 +1,5 @@
 /*==========================================================
- JK Enterprises
- product.js
- Version : 1.0
- Product Module
+ JK Enterprises | product.js
 ==========================================================*/
 
 "use strict";
@@ -13,7 +10,6 @@ import UI from "./ui.js";
 import Utils from "./utils.js";
 import Cart from "./cart.js";
 
-
 const Product={
 
 /*==========================================================
@@ -21,18 +17,9 @@ const Product={
 ==========================================================*/
 
 async init(){
-
-    if(Router.isProducts())
-
-        await this.catalog();
-
-    if(Router.isProduct())
-
-        await this.details();
-
+if(Router.isProducts())return this.catalog();
+if(Router.isProduct())return this.details();
 },
-
-
 
 /*==========================================================
  Product Listing
@@ -40,83 +27,29 @@ async init(){
 
 async catalog(){
 
-    const grid=
+const grid=document.getElementById("productGrid");
+if(!grid)return;
 
-    document.getElementById(
+UI.loader(grid);
 
-        "productGrid"
+const r=await API.products({
+page:Router.pageNumber(),
+category:Router.category(),
+brand:Router.brand(),
+search:Router.search(),
+sort:Router.sort()
+});
 
-    );
+if(!r.success||!r.data?.length)
+return UI.empty(grid,"No Products Found","Try changing your filters.");
 
-    if(!grid)return;
+grid.innerHTML=r.data.map(UI.productCard).join("");
 
-    UI.loader(grid);
-
-    const response=
-
-    await API.products({
-
-        page:Router.pageNumber(),
-
-        category:Router.category(),
-
-        brand:Router.brand(),
-
-        search:Router.search(),
-
-        sort:Router.sort()
-
-    });
-
-    if(
-
-        !response.success||
-
-        !response.data?.length
-
-    ){
-
-        UI.empty(
-
-            grid,
-
-            "No Products Found",
-
-            "Try changing your filters."
-
-        );
-
-        return;
-
-    }
-
-    grid.innerHTML=
-
-response.data
-
-.map(
-
-    p=>UI.productCard(p)
-
-)
-
-.join("");
-
-/*==========================================================
-Product Count
-==========================================================*/
-
-const count = document.getElementById("productCount");
-
-if(count){
-
-    count.textContent = response.total ?? response.data.length;
-
-}
+document.getElementById("productCount")?.replaceChildren(
+document.createTextNode(r.total??r.data.length)
+);
 
 },
-
-
 
 /*==========================================================
  Product Details
@@ -124,65 +57,22 @@ if(count){
 
 async details(){
 
-    const container=
+const container=document.getElementById("productDetails");
+if(!container)return;
 
-    document.getElementById(
+UI.loader(container);
 
-        "productDetails"
+const id=Router.id();
 
-    );
+if(!id)
+return UI.error(container,"Product not found.");
 
-    if(!container)return;
+const r=await API.product(id);
 
-    UI.loader(container);
+if(!r.success||!r.data)
+return UI.error(container,"Unable to load product.");
 
-    const id=
-
-    Router.id();
-
-    if(!id){
-
-        UI.error(
-
-            container,
-
-            "Product not found."
-
-        );
-
-        return;
-
-    }
-
-    const response=
-
-    await API.product(id);
-
-    if(
-
-        !response.success||
-
-        !response.data
-
-    ){
-
-        UI.error(
-
-            container,
-
-            "Unable to load product."
-
-        );
-
-        return;
-
-    }
-
-    this.render(
-
-        response.data
-
-    );
+this.render(r.data);
 
 },
 
@@ -192,63 +82,30 @@ async details(){
 
 render(product){
 
-    document.title=
+document.title=`${product.name} | JK Enterprises`;
 
-    `${product.name} | JK Enterprises`;
+const container=document.getElementById("productDetails");
 
-    const container=
+container.innerHTML=UI.product(product);
 
-    document.getElementById(
-
-        "productDetails"
-
-    );
-
-    container.innerHTML=
-
-    UI.product(product);
-
-    this.gallery();
-
-    this.quantity();
-
-    this.buttons(product);
+this.gallery();
+this.quantity();
+this.buttons(product);
+this.related(product.id);
 
 },
-
 /*==========================================================
  Gallery
 ==========================================================*/
 
 gallery(){
 
-    const main=
+const main=document.getElementById("productImage");
+if(!main)return;
 
-    document.getElementById(
-
-        "productImage"
-
-    );
-
-    if(!main)return;
-
-    document
-
-    .querySelectorAll(
-
-        ".product-thumbnail"
-
-    )
-
-    .forEach(img=>{
-
-        img.onclick=()=>{
-
-            main.src=img.dataset.image;
-
-        };
-
-    });
+document.querySelectorAll(".product-thumbnail").forEach(img=>
+img.onclick=()=>main.src=img.dataset.image
+);
 
 },
 
@@ -258,45 +115,16 @@ gallery(){
 
 quantity(){
 
-    const qty=
+const qty=document.getElementById("quantity");
+if(!qty)return;
 
-    document.getElementById(
+document.getElementById("qtyPlus")
+?.addEventListener("click",()=>qty.value++);
 
-        "quantity"
-
-    );
-
-    if(!qty)return;
-
-    document
-
-    .getElementById("qtyPlus")
-
-    ?.addEventListener(
-
-        "click",
-
-        ()=>qty.value++
-
-    );
-
-    document
-
-    .getElementById("qtyMinus")
-
-    ?.addEventListener(
-
-        "click",
-
-        ()=>{
-
-            if(qty.value>1)
-
-                qty.value--;
-
-        }
-
-    );
+document.getElementById("qtyMinus")
+?.addEventListener("click",()=>{
+if(qty.value>1)qty.value--;
+});
 
 },
 
@@ -306,53 +134,21 @@ quantity(){
 
 buttons(product){
 
-    document
+document.getElementById("addToCart")
+?.addEventListener("click",()=>{
 
-    .getElementById(
+const quantity=Number(
+document.getElementById("quantity")?.value||1
+);
 
-        "addToCart"
+Cart.add(product,quantity);
 
-    )
+document.dispatchEvent(new CustomEvent(
+"cart:add",
+{detail:{product,quantity}}
+));
 
-    ?.addEventListener(
-
-        "click",
-
-        ()=>{
-
-            document.dispatchEvent(
-
-                new CustomEvent(
-
-                    "cart:add",
-
-                    {
-
-                        detail:{
-
-                            product,
-
-                            quantity:Number(
-
-                                document.getElementById(
-
-                                    "quantity"
-
-                                )?.value||1
-
-                            )
-
-                        }
-
-                    }
-
-                )
-
-            );
-
-        }
-
-    );
+});
 
 },
 
@@ -362,62 +158,27 @@ buttons(product){
 
 async related(id){
 
-    const target=
+const target=document.getElementById("relatedProducts");
+if(!target)return;
 
-    document.getElementById(
+const r=await API.products({related:id});
 
-        "relatedProducts"
+if(!r.success||!r.data?.length)return;
 
-    );
-
-    if(!target)return;
-
-    const response=
-
-    await API.products({
-
-        related:id
-
-    });
-
-    if(
-
-        !response.success||
-
-        !response.data
-
-    )return;
-
-    target.innerHTML=
-
-    response.data
-
-    .map(
-
-        p=>UI.productCard(p)
-
-    )
-
-    .join("");
+target.innerHTML=r.data
+.map(UI.productCard)
+.join("");
 
 },
 
-
-
 /*==========================================================
- Search Helper
+ Search
 ==========================================================*/
 
 search(text){
-
-    window.location=
-
-    `search.html?q=${encodeURIComponent(text)}`;
-
+location.href=`search.html?q=${encodeURIComponent(text)}`;
 }
 
 };
-
-
 
 export default Product;

@@ -1,362 +1,113 @@
 /*==========================================================
- JK Enterprises
- api.js
- Version : 1.0
- Google Apps Script API
+ JK Enterprises | api.js
 ==========================================================*/
 
 "use strict";
 
 import CONFIG from "./config.js";
-import Utils from "./utils.js";
 
-const API = {
+const API={
 
-    /*======================================================
-     Base Request
-    ======================================================*/
+/*==========================================================
+ GET Request
+==========================================================*/
 
-    async request(action="",params={}){
+async request(action="",params={}){
 
-        try{
+try{
 
-            const url=new URL(CONFIG.API.BASE_URL);
+const url=new URL(CONFIG.API.BASE_URL);
 
-            url.searchParams.set(
+url.searchParams.set("action",action);
 
-                "action",
+new URLSearchParams(params).forEach((v,k)=>url.searchParams.set(k,v));
 
-                action
+const r=await fetch(url,{cache:"force-cache"});
 
-            );
+if(!r.ok)throw Error(`HTTP ${r.status}`);
 
-            Object.entries(params).forEach(
+return await r.json();
 
-                ([key,value])=>
+}catch(e){
 
-                url.searchParams.set(key,value)
+console.error("[API]",e);
 
-            );
+return{success:false,message:e.message,data:null};
 
-            const response=await fetch(
-
-                url,
-
-                {
-
-                    method:"GET",
-
-                    cache:"force-cache"
-
-                }
-
-            );
-
-            if(!response.ok)
-
-                throw new Error(
-
-                    `HTTP ${response.status}`
-
-                );
-
-            return await response.json();
-
-        }
-
-        catch(error){
-
-            console.error(
-
-                "[API]",
-
-                error
-
-            );
-
-            return{
-
-                success:false,
-
-                message:error.message,
-
-                data:null
-
-            };
-
-        }
-
-    },
-
-
-
-    /*======================================================
-     Products
-    ======================================================*/
-
-    products(params={}){
-
-        return this.request(
-
-            CONFIG.ACTIONS.PRODUCTS,
-
-            params
-
-        );
-
-    },
-
-
-
-    product(id){
-
-        return this.request(
-
-            CONFIG.ACTIONS.PRODUCT,
-
-            {id}
-
-        );
-
-    },
-
-
-
-    /*======================================================
-     Brands
-    ======================================================*/
-
-    brands(){
-
-        return this.request(
-
-            CONFIG.ACTIONS.BRANDS
-
-        );
-
-    },
-
-
-
-    brand(id){
-
-        return this.request(
-
-            CONFIG.ACTIONS.BRAND,
-
-            {id}
-
-        );
-
-    },
-
-
-
-    /*======================================================
-     Blogs
-    ======================================================*/
-
-    blogs(params={}){
-
-        return this.request(
-
-            CONFIG.ACTIONS.BLOGS,
-
-            params
-
-        );
-
-    },
-
-
-
-    blog(id){
-
-        return this.request(
-
-            CONFIG.ACTIONS.BLOG,
-
-            {id}
-
-        );
-
-    },
-
-/*======================================================
- Featured Blogs
-======================================================*/
-
-featuredBlogs(){
-
-    return this.request(
-
-        "featuredBlogs"
-
-    );
+}
 
 },
 
-/*======================================================
- Blog Categories
-======================================================*/
+/*==========================================================
+ Products
+==========================================================*/
 
-blogCategories(){
+products(params={}){return this.request(CONFIG.ACTIONS.PRODUCTS,params);},
+product(id){return this.request(CONFIG.ACTIONS.PRODUCT,{id});},
 
-    return this.request(
+/*==========================================================
+ Brands
+==========================================================*/
 
-        "blogCategories"
+brands(){return this.request(CONFIG.ACTIONS.BRANDS);},
+brand(id){return this.request(CONFIG.ACTIONS.BRAND,{id});},
 
-    );
+/*==========================================================
+ Blogs
+==========================================================*/
 
-},
+blogs(params={}){return this.request(CONFIG.ACTIONS.BLOGS,params);},
+blog(id){return this.request(CONFIG.ACTIONS.BLOG,{id});},
+featuredBlogs(){return this.request("featuredBlogs");},
+blogCategories(){return this.request("blogCategories");},
+relatedBlogs(id){return this.request("relatedBlogs",{id});},
 
-/*======================================================
- Related Blogs
-======================================================*/
+/*==========================================================
+ Homepage
+==========================================================*/
 
-relatedBlogs(id){
+homepage(){return this.request(CONFIG.ACTIONS.HOMEPAGE);},
 
-    return this.request(
+/*==========================================================
+ Search
+==========================================================*/
 
-        "relatedBlogs",
+search(q="",page=1){return this.request(CONFIG.ACTIONS.SEARCH,{q,page});},
 
-        {id}
+/*==========================================================
+ Settings
+==========================================================*/
 
-    );
+settings(){return this.request(CONFIG.ACTIONS.SETTINGS);},
+ping(){return this.request("ping");},
 
-},
+/*==========================================================
+ Order
+==========================================================*/
 
-    /*======================================================
-     Search
-    ======================================================*/
+async order(order={}){
 
-    search(query="",page=1){
+try{
 
-        return this.request(
+const r=await fetch(CONFIG.API.BASE_URL,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({action:CONFIG.ACTIONS.ORDER,order})
+});
 
-            CONFIG.ACTIONS.SEARCH,
+if(!r.ok)throw Error(`HTTP ${r.status}`);
 
-            {
+return await r.json();
 
-                q:query,
+}catch(e){
 
-                page
+console.error("[ORDER]",e);
 
-            }
+return{success:false,message:e.message,data:null};
 
-        );
+}
 
-    },
-
-
-
-    /*======================================================
-     Settings
-    ======================================================*/
-
-    settings(){
-
-        return this.request(
-
-            CONFIG.ACTIONS.SETTINGS
-
-        );
-
-    },
-
-
-
-    /*======================================================
- Order Submit
-======================================================*/
-
-async order(data={}){
-
-    try{
-
-        const response = await fetch(
-
-            CONFIG.API.BASE_URL,
-
-            {
-
-                method:"POST",
-
-                headers:{
-
-                    "Content-Type":"application/json"
-
-                },
-
-                body:JSON.stringify({
-
-                    action:CONFIG.ACTIONS.ORDER,
-
-                    order:data
-
-                })
-
-            }
-
-        );
-
-        if(!response.ok)
-
-            throw new Error(
-
-                `HTTP ${response.status}`
-
-            );
-
-        return await response.json();
-
-    }
-
-    catch(error){
-
-        console.error(
-
-            "[ORDER]",
-
-            error
-
-        );
-
-        return{
-
-            success:false,
-
-            message:error.message
-
-        };
-
-    }
-
-},
-
-    /*======================================================
-     Ping
-    ======================================================*/
-
-    ping(){
-
-        return this.request("ping");
-
-    },
-    
-    /*======================================================
-    Homepage
-    ======================================================*/
-
-    homepage(){
-
-        return this.request(
-
-            "homepage"
-
-        );
-
-    }
+}
 
 };
 

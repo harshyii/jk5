@@ -1,16 +1,11 @@
 /*==========================================================
- JK Enterprises
- checkout.js
- Version : 1.0
- Checkout Module
+ JK Enterprises | checkout.js
 ==========================================================*/
 
 "use strict";
 
 import API from "./api.js";
 import Cart from "./cart.js";
-
-
 import Utils from "./utils.js";
 import UI from "./ui.js";
 
@@ -21,91 +16,34 @@ const Checkout={
 ==========================================================*/
 
 init(){
-
-    if(!document.getElementById("checkoutForm"))
-        return;
-
-    this.summary();
-
-    this.payment();
-
-    this.generateQR();
-
-    this.bind();
-
-    this.updatePaymentOffer();
-
+if(!document.getElementById("checkoutForm"))return;
+this.summary();
+this.payment();
+this.generateQR();
+this.bind();
+this.updatePaymentOffer();
 },
-
 
 /*==========================================================
  Summary
 ==========================================================*/
 
 summary(){
+const items=document.getElementById("checkoutItems");
+const total=document.getElementById("checkoutTotal");
 
-    const items=
-
-    document.getElementById(
-
-        "checkoutItems"
-
-    );
-
-
-
-    const total=
-
-    document.getElementById(
-
-        "checkoutTotal"
-
-    );
-
-
-
-    if(items){
-
-        items.innerHTML=
-
-        Cart.items.map(item=>`
-
+if(items){
+items.innerHTML=Cart.items.map(i=>`
 <div class="summary-item">
-
-<span>
-
-${item.name}
-
-× ${item.quantity}
-
-</span>
-
-<strong>
-
-${Utils.price(
-
-item.price*item.quantity
-
-)}
-
-</strong>
-
-</div>
-
-`).join("");
-
-    }
-
-
-
-    if(total){
-
-    total.textContent = Utils.price(Cart.total());
-
-    this.generateQR();
-
+<span>${i.name} × ${i.quantity}</span>
+<strong>${Utils.price(i.price*i.quantity)}</strong>
+</div>`).join("");
 }
 
+if(total){
+total.textContent=Utils.price(Cart.total());
+this.generateQR();
+}
 },
 
 /*==========================================================
@@ -113,45 +51,11 @@ item.price*item.quantity
 ==========================================================*/
 
 bind(){
+document.getElementById("checkoutForm")
+?.addEventListener("submit",e=>this.submit(e));
 
-    document
-
-    .getElementById(
-
-        "checkoutForm"
-
-    )
-
-    ?.addEventListener(
-
-        "submit",
-
-        e=>this.submit(e)
-
-    );
-
-
-
-    document
-
-    .querySelectorAll(
-
-        "[name='paymentMethod']"
-
-    )
-
-    .forEach(radio=>{
-
-        radio.addEventListener(
-
-            "change",
-
-            ()=>this.payment()
-
-        );
-
-    });
-
+document.querySelectorAll("[name='paymentMethod']")
+.forEach(r=>r.addEventListener("change",()=>this.payment()));
 },
 
 /*==========================================================
@@ -159,33 +63,9 @@ bind(){
 ==========================================================*/
 
 payment(){
-
-    const method=
-
-    document.querySelector(
-
-        "[name='paymentMethod']:checked"
-
-    )?.value;
-
-
-
-    document
-
-    .querySelectorAll(
-
-        "[data-payment]"
-
-    )
-
-    .forEach(box=>{
-
-        box.hidden=
-
-        box.dataset.payment!==method;
-
-    });
-
+const method=document.querySelector("[name='paymentMethod']:checked")?.value;
+document.querySelectorAll("[data-payment]")
+.forEach(el=>el.hidden=el.dataset.payment!==method);
 },
 
 /*==========================================================
@@ -193,45 +73,17 @@ payment(){
 ==========================================================*/
 
 validate(form){
+if(!form.checkValidity()){
+form.reportValidity();
+return false;
+}
 
-    if(
+if(!Cart.items.length){
+UI.toast("Cart is empty","danger");
+return false;
+}
 
-        !form.checkValidity()
-
-    ){
-
-        form.reportValidity();
-
-        return false;
-
-    }
-
-
-
-    if(
-
-        Cart.items.length===0
-
-    ){
-
-        UI.toast(
-
-            "Cart is empty",
-
-            "danger"
-
-        );
-
-
-
-        return false;
-
-    }
-
-
-
-    return true;
-
+return true;
 },
 
 /*==========================================================
@@ -239,77 +91,24 @@ validate(form){
 ==========================================================*/
 
 data(form){
+const fd=new FormData(form);
 
-    const fd=
-
-    new FormData(form);
-
-
-
-    return{
-
-        customer:{
-
-            name:
-
-            fd.get("name"),
-
-            phone:
-
-            fd.get("phone"),
-            
-            email:
-
-            fd.get("email")
-
-        },
-
-
-
-        address:{
-
-            address:
-
-            fd.get("address"),
-
-            city:
-
-            fd.get("city"),
-
-            state:
-
-            fd.get("state"),
-
-            pincode:
-
-            fd.get("pincode")
-
-        },
-
-
-
-        payment:
-
-        fd.get(
-
-            "paymentMethod"
-
-        ),
-
-
-
-        items:
-
-        Cart.items,
-
-
-
-        total:
-
-        Cart.total()
-
-    };
-
+return{
+customer:{
+name:fd.get("name"),
+phone:fd.get("phone"),
+email:fd.get("email")
+},
+address:{
+address:fd.get("address"),
+city:fd.get("city"),
+state:fd.get("state"),
+pincode:fd.get("pincode")
+},
+payment:fd.get("paymentMethod"),
+items:Cart.items,
+total:Cart.total()
+};
 },
 
 /*==========================================================
@@ -317,102 +116,43 @@ data(form){
 ==========================================================*/
 
 async submit(e){
+e.preventDefault();
 
-    e.preventDefault();
+const form=e.target;
+if(!this.validate(form))return;
 
+const btn=form.querySelector("[type='submit']");
+if(this.processing)return;
 
+this.processing=true;
+btn.disabled=true;
+btn.textContent="Placing Order...";
 
-    const form=e.target;
+try{
 
+const res=await API.order(this.data(form));
 
+if(!res.success){
+UI.toast(res.message||"Order failed.","danger");
+return;
+}
 
-    if(
+Cart.clear();
+UI.toast("Order placed successfully.");
+location.href=`success.html?order=${res.orderId}`;
 
-        !this.validate(form)
+}catch(err){
 
-    )
+console.error(err);
+UI.toast("Something went wrong.","danger");
 
-        return;
+}finally{
 
+this.processing=false;
+btn.disabled=false;
+btn.textContent="Place Order";
 
-
-    const button=
-
-    form.querySelector(
-
-        "[type='submit']"
-
-    );
-
-
-
-    if(this.processing)
-    return;
-
-        this.processing=true;
-    this.processing = false;
-    button.textContent=
-
-    "Placing Order...";
-
-
-
-    const response=
-
-    await API.order(
-
-        this.data(form)
-
-    );
-
-
-
-    button.disabled=false;
-
-    button.textContent=
-
-    "Place Order";
-
-
-
-    if(
-
-        !response.success
-
-    ){
-
-        UI.toast(
-
-            response.message||
-
-            "Order failed.",
-
-            "danger"
-
-        );
-
-
-
-        return;
-
-    }
-
-
-
-    Cart.clear();
-
-
-
-    UI.toast(
-
-        "Order placed successfully."
-
-    );
-
-
-
-    window.location =
-    `success.html?order=${response.orderId}`;
+}
 },
 
 /*==========================================================
@@ -420,20 +160,14 @@ async submit(e){
 ==========================================================*/
 
 success(){
+const id=new URLSearchParams(location.search).get("success");
+if(!id)return;
 
-    const id = new URLSearchParams(location.search).get("success");
+document.getElementById("checkoutSuccess")
+?.removeAttribute("hidden");
 
-    if(!id) return;
-
-    document
-        .getElementById("checkoutSuccess")
-        ?.removeAttribute("hidden");
-
-    const order = document.getElementById("orderNumber");
-
-    if(order)
-        order.textContent = id;
-
+const order=document.getElementById("orderNumber");
+if(order)order.textContent=id;
 },
 
 /*==========================================================
@@ -441,55 +175,39 @@ success(){
 ==========================================================*/
 
 generateQR(){
+const qr=document.getElementById("upiQR");
+if(!qr||typeof QRCode==="undefined")return;
 
-    if(typeof QRCode==="undefined"){
+const amount=Cart.total().toFixed(2);
+const upi=`upi://pay?pa=9050623210@sbi&pn=JK Enterprises&am=${amount}&cu=INR&tn=Order`;
 
-        console.error("QRCode library missing");
+qr.innerHTML="";
 
-        return;
-
-    }
-
-    const amount = Number(Cart.total()).toFixed(2);
-
-    const upi =
-`upi://pay?pa=9050623210@sbi&pn=JK Enterprises&am=${amount}&cu=INR&tn=Order`;
-
-
-    console.log(upi);
-
-    const qr = document.getElementById("upiQR");
-
-    qr.innerHTML="";
-
-    new QRCode(qr,{
-        text: upi,
-        width:250,
-        height:250
-    });
-
+new QRCode(qr,{
+text:upi,
+width:250,
+height:250
+});
 },
 
+/*==========================================================
+ Payment Offer
+==========================================================*/
+
 updatePaymentOffer(){
+const total=Cart.total();
+const cod=total*1.05;
+const savings=cod-total;
 
-    const total = Cart.total();
+const set=(id,value)=>{
+const el=document.getElementById(id);
+if(el)el.textContent=Utils.price(value);
+};
 
-    const cod = total * 1.05;
-
-    const savings = cod - total;
-
-    document.getElementById("offerTotal").textContent =
-        Utils.price(total);
-
-    document.getElementById("offerOnline").textContent =
-        Utils.price(total);
-
-    document.getElementById("offerCOD").textContent =
-        Utils.price(cod);
-
-    document.getElementById("offerSavings").textContent =
-        Utils.price(savings);
-
+set("offerTotal",total);
+set("offerOnline",total);
+set("offerCOD",cod);
+set("offerSavings",savings);
 }
 
 };
